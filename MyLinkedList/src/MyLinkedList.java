@@ -31,7 +31,7 @@ public class MyLinkedList {
         }
     }
 
-    public StudentInfo removeFromEnd() {
+    public StudentInfo removeFromRear() {
         int i = 1;
         if(this.frontOfList != null) {
             StudentInfo s = frontOfList;
@@ -71,7 +71,11 @@ public class MyLinkedList {
             someStudent.studentOutput(i);
             someStudent = someStudent.getNext();
         }
-        someStudent.studentOutput(i);
-        System.out.println();
+        if(someStudent != null) {
+            someStudent.studentOutput(i);
+            System.out.println();
+        } else {
+            System.out.println(0);
+        }
     }
 }
