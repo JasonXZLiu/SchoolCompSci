@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
         MyLinkedList m = new MyLinkedList();
         StudentInfo someStudent = new StudentInfo(123456, "Daffy", "Duck");
         System.out.println(m.addToRear(someStudent));

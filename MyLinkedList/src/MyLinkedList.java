@@ -67,7 +67,7 @@ public class MyLinkedList {
     public void studentsOutput() {
         StudentInfo someStudent = this.frontOfList;
         int i = 0;
-         while (++i < this.size){
+        while (++i < this.size){
             someStudent.studentOutput(i);
             someStudent = someStudent.getNext();
         }
