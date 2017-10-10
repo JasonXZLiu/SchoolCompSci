@@ -69,19 +69,6 @@ public class MyBinaryTree {
         this.size++;
     }
 
-    public void traverseDFS() {
-        Queue<StudentInfo> q = new LinkedList<>();
-    }
-
-    public int traverseBFS() {
-        Stack<StudentInfo> s = new Stack<>();
-        int cnt = 0;
-        for(int i = 0; i < this.levels; i++) {
-            cnt++;
-        }
-        return 0;
-    }
-
     // inorder traversal using recursion
     public void inorder(StudentInfo n) {
         // checks if node exists
