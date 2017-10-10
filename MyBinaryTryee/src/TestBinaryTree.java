@@ -26,10 +26,10 @@ public class TestBinaryTree {
         randomStudent = new StudentInfo(6, "Parita", "Yadav");
         theBinaryTree.addToTree(theBinaryTree.getRoot(), randomStudent);
         System.out.println("inOrderTraversal");
-        theBinaryTree.inOrderTraversal(theBinaryTree.getRoot());
+        theBinaryTree.inorder(theBinaryTree.getRoot());
         System.out.println("preOrderTraversal");
-        theBinaryTree.preOrderTraversal(theBinaryTree.getRoot());
+        theBinaryTree.preorder(theBinaryTree.getRoot());
         System.out.println("postOrderTraversal");
-        theBinaryTree.postOrderTraversal(theBinaryTree.getRoot());
+        theBinaryTree.postorder(theBinaryTree.getRoot());
     }
 }

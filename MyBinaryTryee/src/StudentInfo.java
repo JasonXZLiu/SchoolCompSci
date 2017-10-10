@@ -3,22 +3,21 @@
  */
 public class StudentInfo {
     // attributes
-    private int studentNumber;
+    private int studentNum;
     private String firstName;
     private String lastName;
-    private StudentInfo parent;
     private StudentInfo left;
     private StudentInfo right;
 
     // constructors
-    public StudentInfo(int studentNumber, String firstName, String lastName) {
-        this.studentNumber = studentNumber;
+    public StudentInfo(int studentNum, String firstName, String lastName) {
+        this.studentNum = studentNum;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public StudentInfo(int studentNumber, String firstName, String lastName, StudentInfo left, StudentInfo right) {
-        this.studentNumber = studentNumber;
+    public StudentInfo(int studentNum, String firstName, String lastName, StudentInfo left, StudentInfo right) {
+        this.studentNum = studentNum;
         this.firstName = firstName;
         this.left = left;
         this.right = right;
@@ -26,12 +25,12 @@ public class StudentInfo {
     }
 
     // getters and setters for private attributes
-    public int getStudentNumber() {
-        return studentNumber;
+    public int getStudentNum() {
+        return studentNum;
     }
 
-    public void setStudentNumber(int studentNumber) {
-        this.studentNumber = studentNumber;
+    public void setStudentNum(int studentNum) {
+        this.studentNum = studentNum;
     }
 
     public String getFirstName() {
@@ -63,13 +62,5 @@ public class StudentInfo {
 
     public void setRight(StudentInfo right) {
         this.right = right;
-    }
-
-    public StudentInfo getParent() {
-        return parent;
-    }
-
-    public void setParent(StudentInfo parent) {
-        this.parent = parent;
     }
 }

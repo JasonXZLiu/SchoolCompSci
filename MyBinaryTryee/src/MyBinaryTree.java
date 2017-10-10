@@ -42,10 +42,9 @@ public class MyBinaryTree {
             // walk along the levels until get to the end
             while (i <= this.levels && b) {
                 // check if number is greater or less than roots value
-                if (n.getStudentNumber() > tmp.getStudentNumber()) {
+                if (n.getStudentNum() > tmp.getStudentNum()) {
                     // if reached end of the branch, add node
                     if (tmp.getRight() == null) {
-                        n.setParent(tmp);
                         tmp.setRight(n);
                         b = false;
                     } else {
@@ -54,7 +53,6 @@ public class MyBinaryTree {
                     }
                 } else {
                     if (tmp.getLeft() == null) {
-                        n.setParent(tmp);
                         tmp.setLeft(n);
                         b = false;
                     } else {
@@ -85,32 +83,32 @@ public class MyBinaryTree {
     }
 
     // inorder traversal using recursion
-    public void inOrderTraversal(StudentInfo n) {
+    public void inorder(StudentInfo n) {
         // checks if node exists
         if(n != null) {
             // continue to next node on the left
-            inOrderTraversal(n.getLeft());
+            inorder(n.getLeft());
             // process node
-            System.out.println(n.getStudentNumber());
+            System.out.println(n.getStudentNum());
             // continue to next node on the right
-            inOrderTraversal(n.getRight());
+            inorder(n.getRight());
         }
         // returns back to where the function was called
     }
 
-    public void preOrderTraversal(StudentInfo n) {
+    public void preorder(StudentInfo n) {
         if(n != null) {
-            System.out.println(n.getStudentNumber());
-            preOrderTraversal(n.getLeft());
-            preOrderTraversal(n.getRight());
+            System.out.println(n.getStudentNum());
+            preorder(n.getLeft());
+            preorder(n.getRight());
         }
     }
 
-    public void postOrderTraversal(StudentInfo n) {
+    public void postorder(StudentInfo n) {
         if(n != null) {
-            postOrderTraversal(n.getLeft());
-            postOrderTraversal(n.getRight());
-            System.out.println(n.getStudentNumber());
+            postorder(n.getLeft());
+            postorder(n.getRight());
+            System.out.println(n.getStudentNum());
         }
     }
 }
