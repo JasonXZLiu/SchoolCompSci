@@ -6,10 +6,14 @@ import java.util.Stack;
  * Created by jason_001 on 9/27/2017.
  */
 public class MyBinaryTree {
-    // attributes
-    // root node of the tree
+
+    /* attributes
+     * private attributes to prevent unauthorized access / updates
+     */
+
+    // root node of the tree of type StudentInfo
     private StudentInfo root;
-    // size of tree
+    // size of tree of type integer (initialized at 0)
     private int size = 0;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,36 +98,67 @@ public class MyBinaryTree {
         this.size++;
     }
 
-    // inorder traversal using recursion
-    // prints an order of the values from smallest to largest
+    /* inorder traversal
+     * traversal using recursion
+     * prints an order of the values from smallest to largest
+     * checks left node, then processes node, then checks right node
+     */
     public void inorder(StudentInfo n) {
-        // checks if node exists
+        // checks if node exists (otherwise, would return nullPointerException)
+        // if node exists, continues into if statement
+        // else, reaches end of method so returns back to call
         if(n != null) {
+            // recursively calls the method to traverse down next node
             // continue to next node on the left
             inorder(n.getLeft());
             // process node
             System.out.print(n.getStudentNum()+ " ");
+            // recursively calls the method to traverse down next node
             // continue to next node on the right
             inorder(n.getRight());
         }
         // returns back to where the function was called
     }
 
-    // preorder traversal using recursion
-    // prints the path of the nodes
+    /* preorder traversal
+     * traversal using recursion
+     * prints the path of the nodes (going down the left branch until next is null, then checks right)
+     * processes, then checks left node, then checks right node
+     */
     public void preorder(StudentInfo n) {
+        // checks if node exists (otherwise, would return nullPointerException)
+        // if node exists, continues into if statement
+        // else, reaches end of method so returns back to call
         if(n != null) {
+            // process node
             System.out.print(n.getStudentNum() + " ");
+            // recursively calls the method to traverse down next node
+            // continue to next node on the left
             preorder(n.getLeft());
+            // recursively calls the method to traverse down next node
+            // continue to next node on the right
             preorder(n.getRight());
         }
+        // returns back to where the function was called
     }
 
-    // postorder traversal using recursion
+    /* postorder traversal
+     * traversal using recursion
+     * prints the path of the nodes (starts processing node when reaches end of most-right branch)
+     * checks left node, then checks right node, then processes
+     */
     public void postorder(StudentInfo n) {
+        // checks if node exists (otherwise, would return nullPointerException)
+        // if node exists, continues into if statement
+        // else, reaches end of method so returns back to call
         if(n != null) {
+            // recursively calls the method to traverse down next node
+            // continue to next node on the left
             postorder(n.getLeft());
+            // recursively calls the method to traverse down next node
+            // continue to next node on the right
             postorder(n.getRight());
+            // process node
             System.out.print(n.getStudentNum() + " ");
         }
     }

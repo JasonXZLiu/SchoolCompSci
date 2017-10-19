@@ -2,11 +2,24 @@
  * Created by jason_001 on 9/27/2017.
  */
 public class StudentInfo {
-    // attributes
+
+    /* attributes
+     * private attributes to prevent unauthorized access / updates
+     */
+
+    // student number of the student (used as index) as type int
     private int studentNum;
+    // student's first name as type String
     private String firstName;
+    // student's last name as type String
     private String lastName;
+    // student's left child node as type StudentInfo
+    // points to the next instance of StudentInfo along the left path
+    // else would point to null
     private StudentInfo left;
+    // student's right child node as type StudentInfo
+    // points to the next instance of StudentInfo along the right path
+    // else would point to null
     private StudentInfo right;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
