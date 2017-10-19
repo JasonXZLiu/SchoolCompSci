@@ -9,13 +9,23 @@ public class StudentInfo {
     private StudentInfo left;
     private StudentInfo right;
 
-    // constructors
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /* constructors
+     * use to instantiate a new instance of the class
+     * creates a new object based on the passed parameters
+     * uses polymorphism + overloading (two constructors with the same name)
+     */
+
+    // instantiate StudentInfo with proper information
+    // shouldn't be able to instantiate StudentInfo without required information
     public StudentInfo(int studentNum, String firstName, String lastName) {
         this.studentNum = studentNum;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    // constructor for all the fields (already has nodes)
     public StudentInfo(int studentNum, String firstName, String lastName, StudentInfo left, StudentInfo right) {
         this.studentNum = studentNum;
         this.firstName = firstName;
@@ -24,7 +34,14 @@ public class StudentInfo {
         this.lastName = lastName;
     }
 
-    // getters and setters for private attributes
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /* getter for the root position
+     * because the attributes are private, must make methods to access/update
+     * getter returns the value of the attribute
+     * setter sets a new value for the attribute
+     */
+
     public int getStudentNum() {
         return studentNum;
     }
