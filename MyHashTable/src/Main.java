@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	    // write your code here
         Scanner s = new Scanner(System.in);
         MyHashTable m = new MyHashTable(2);
 
@@ -13,7 +13,7 @@ public class Main {
         m.addEmployees(e);
         e = new EmployeeInfo(1, "David", "Lu", "M", "Mississauga", 0.3);
         m.addEmployees(e);
-        e = new EmployeeInfo(3, "Mira", "Yadav", "M", "Mississauga", 0.3);
+        e = new EmployeeInfo(3, "Mira", "Yadav", "F", "Mississauga", 0.3);
         m.addEmployees(e);
 
         m.displayContents();
@@ -24,7 +24,9 @@ public class Main {
         System.out.println("FOUND AT " + m.searchEmployees(i));
         System.out.println();
 
-        e = m.removeEmployee(0);
+        System.out.print("Remove: ");
+        int j = s.nextInt();
+        e = m.removeEmployee(j);
         e.display();
 
         m.displayContents();

@@ -5,6 +5,7 @@ import java.util.Stack;
 /**
  * Created by jason_001 on 9/27/2017.
  */
+
 public class MyBinaryTree {
 
     /* attributes
@@ -76,19 +77,28 @@ public class MyBinaryTree {
             while (b) {
                 // check if number is greater or less than roots value
                 if (n.getStudentNum() > tmp.getStudentNum()) {
+                    // student number is greater than current node's student number
                     // if reached end of the branch, add node
                     if (tmp.getRight() == null) {
+                        // sets the next node to be the one being added
                         tmp.setRight(n);
+                        // breaks from the while loop
                         b = false;
                     } else {
                         // haven't reached end so continue to next node
                         tmp = tmp.getRight();
                     }
                 } else {
+                    // student number is smaller than current node's student number
+                    // if next node is null, means reached the end of the branch
+                    // because next is empty, can add the next one
                     if (tmp.getLeft() == null) {
+                        // sets the next node to be the one being added
                         tmp.setLeft(n);
+                        // breaks from the while loop
                         b = false;
                     } else {
+                        // haven't reached end so continue to next node
                         tmp = tmp.getLeft();
                     }
                 }
@@ -144,7 +154,7 @@ public class MyBinaryTree {
 
     /* postorder traversal
      * traversal using recursion
-     * prints the path of the nodes (starts processing node when reaches end of most-right branch)
+     * prints the path of the nodes (starts processing node when reaches end of branch -> works backwards)
      * checks left node, then checks right node, then processes
      */
     public void postorder(StudentInfo n) {

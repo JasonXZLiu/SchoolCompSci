@@ -1,6 +1,10 @@
 /**
  * Created by jason_001 on 9/27/2017.
  */
+
+/*
+    class StudentInfo to store information and attributes of student
+ */
 public class StudentInfo {
 
     /* attributes
