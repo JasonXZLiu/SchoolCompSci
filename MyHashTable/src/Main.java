@@ -7,7 +7,7 @@ public class Main {
         Scanner s = new Scanner(System.in);
         MyHashTable m = new MyHashTable(2);
 
-        EmployeeInfo e = new EmployeeInfo(0, "Jason", "Liu", "M", "Mississauga", 0.2);
+        EmployeeInfo e = new EmployeeInfo(2, "Jason", "Liu", "M", "Mississauga", 0.2);
         m.addEmployees(e);
         e = new EmployeeInfo(4, "Alan", "Ma", "M", "Mississauga", 0.3);
         m.addEmployees(e);

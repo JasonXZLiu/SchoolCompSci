@@ -40,12 +40,32 @@ public class MyHashTable {
      * e.g. add a node, remove a node, display tree, etc.
      */
 
-    /* addToTree
-     * adds node to tree by iterating through (walking down) the branches
-     * compares the values of studentNum to decide whether to go left or right
-     * if bigger than current node, will go to the right
-     * if less than current node, will move to left
-     * continues until finds the node's children to be null
+    // calcBucket
+    // returns the bucket the Employee should go under by calculating the remainder of the employee number and the number of buckets
+    public int calcBucket(int tmp) {
+        return tmp % buckets.length;
+    }
+
+    /* searchEmployees
+    * search through each of the employees in buckets to check if the employee exists
+    * if the employee does exist, return the index of the employee in buckets
+    * else, return -1 (signify the employee doesn't exist
+    */
+    public int searchEmployees(int tmp) {
+        int tmp1 = calcBucket(tmp);
+        for (int i = 0; i < buckets[tmp1].size(); i++) {
+            if(buckets[tmp1].get(i).getEmployeeNumber() == tmp) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /* addEmployees
+     * see if the employee is already in the buckets by calling searchEmployees
+     * if searchEmployees returns -1, know that employee doesn't exist in buckets
+     * thus, adds the employee (after calling calBucket() to see which bucket the employee should be added to
+     * else, if employee does exist, returns false
      */
      public boolean addEmployees(EmployeeInfo e) {
         if(searchEmployees(e.getEmployeeNumber()) == -1) {
@@ -56,20 +76,28 @@ public class MyHashTable {
         }
     }
 
+    /* removeEmployees
+     * searches through each ArrayList of each bucket to find the employee
+     * if the employee exists, than removes and returns the employee
+     * else, returns null
+     */
     public EmployeeInfo removeEmployee(int employeeNum) {
         System.out.println("REMOVED: ");
         EmployeeInfo e = null;
         int tmp1 = calcBucket(employeeNum);
-        for (int i = 0; i < buckets[tmp1].size(); i++) {
-            if(buckets[tmp1].get(i).getEmployeeNumber() == employeeNum) {
-                e = buckets[tmp1].get(i);
-                buckets[tmp1].remove(i);
-                return e;
-            }
+        int i = searchEmployees(employeeNum);
+        if(buckets[tmp1].get(i).getEmployeeNumber() == employeeNum) {
+            e = buckets[tmp1].get(i);
+            buckets[tmp1].remove(i);
+            return e;
         }
         return e;
     }
 
+    /* displayContents
+     * loops through each item of buckets and the ArrayList of each bucket
+     * calls display to print the contents (in class EmployeeInfo)
+     */
     public void displayContents() {
         System.out.println("EMPLOYEES: ");
         for (int i = 0; i < buckets.length; i++) {
@@ -77,19 +105,5 @@ public class MyHashTable {
                 buckets[i].get(j).display();
             }
         }
-    }
-
-    public int calcBucket(int tmp) {
-        return tmp % buckets.length;
-    }
-
-    public int searchEmployees(int tmp) {
-        int tmp1 = calcBucket(tmp);
-        for (int i = 0; i < buckets[tmp1].size(); i++) {
-            if(buckets[tmp1].get(i).getEmployeeNumber() == tmp) {
-                return i;
-            }
-        }
-        return -1;
     }
 }
