@@ -51,47 +51,46 @@ public class MyHashTable {
     * if the employee does exist, return the index of the employee in buckets
     * else, return -1 (signify the employee doesn't exist
     */
-    public int searchEmployees(int tmp) {
+    public int searchByEmployeeNumber(int tmp) {
         int tmp1 = calcBucket(tmp);
         for (int i = 0; i < buckets[tmp1].size(); i++) {
-            if(buckets[tmp1].get(i).getEmployeeNumber() == tmp) {
+            if(buckets[tmp1].get(i).getEmpNumber() == tmp) {
                 return i;
             }
         }
         return -1;
     }
 
-    /* addEmployees
+    /* addEmployee
      * see if the employee is already in the buckets by calling searchEmployees
      * if searchEmployees returns -1, know that employee doesn't exist in buckets
      * thus, adds the employee (after calling calBucket() to see which bucket the employee should be added to
      * else, if employee does exist, returns false
      */
-     public boolean addEmployees(EmployeeInfo e) {
-        if(searchEmployees(e.getEmployeeNumber()) == -1) {
-            buckets[calcBucket(e.getEmployeeNumber())].add(e);
+     public boolean addEmployee(EmployeeInfo e) {
+        if(searchByEmployeeNumber(e.getEmpNumber()) == -1) {
+            buckets[calcBucket(e.getEmpNumber())].add(e);
             return true;
         } else {
             return false;
         }
     }
 
-    /* removeEmployees
+    /* removeEmployee
      * searches through each ArrayList of each bucket to find the employee
      * if the employee exists, than removes and returns the employee
      * else, returns null
      */
     public EmployeeInfo removeEmployee(int employeeNum) {
         System.out.println("REMOVED: ");
-        EmployeeInfo e = null;
+        EmployeeInfo removed = null;
         int tmp1 = calcBucket(employeeNum);
-        int i = searchEmployees(employeeNum);
-        if(buckets[tmp1].get(i).getEmployeeNumber() == employeeNum) {
-            e = buckets[tmp1].get(i);
+        int i = searchByEmployeeNumber(employeeNum);
+        if(buckets[tmp1].get(i).getEmpNumber() == employeeNum) {
+            removed = buckets[tmp1].get(i);
             buckets[tmp1].remove(i);
-            return e;
         }
-        return e;
+        return removed;
     }
 
     /* displayContents

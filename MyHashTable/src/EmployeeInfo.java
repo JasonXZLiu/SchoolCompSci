@@ -11,7 +11,7 @@ public class EmployeeInfo {
      */
 
     // employee number of type int to create a unique index / key for each employee
-    private int employeeNumber;
+    private int empNumber;
     // employees first name of type String
     private String firstName;
     // employees last name of type String
@@ -20,9 +20,9 @@ public class EmployeeInfo {
     private int sex; // encode e.g. 0 for M, 1 for F
     // employees work location of type int
     // encoded based on the function encodeWorkLoc()
-    private int workLoc; // encode e.g. 0 for Mississauga
+    private int workLocation; // encode e.g. 0 for Mississauga
     // employees deduction rate of type double
-    private double deductRate; // e.g. 0.21 for 21%
+    private double deductionRate; // e.g. 0.21 for 21%
     // map of each city name to an integer to map the encodings
     public static HashMap<String, Integer> encodeCities = new HashMap<>();
     // ArrayList of the cities (used to see if the work location has already been encoded)
@@ -39,8 +39,17 @@ public class EmployeeInfo {
 
     public EmployeeInfo(){}
 
-    public EmployeeInfo(int employeeNumber, String firstName, String lastName, String sex, String workLoc, double deductRate) {
-        this.employeeNumber = employeeNumber;
+    public EmployeeInfo(int empNumber, String firstName, String lastName, int sex, int workLocation, double deductionRate) {
+        this.empNumber = empNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.workLocation = workLocation;
+        this.deductionRate = deductionRate;
+    }
+
+    public EmployeeInfo(int empNumber, String firstName, String lastName, String sex, String workLocation, double deductionRate) {
+        this.empNumber = empNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         if(sex.equals("F")) {
@@ -48,8 +57,8 @@ public class EmployeeInfo {
         } else {
             this.sex = 0;
         }
-        this.workLoc = encodeWorkLoc(workLoc);
-        this.deductRate = deductRate;
+        this.workLocation = encodeWorkLoc(workLocation);
+        this.deductionRate = deductionRate;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,12 +69,12 @@ public class EmployeeInfo {
      * setter sets a new value for the attribute
      */
 
-    public int getEmployeeNumber() {
-        return employeeNumber;
+    public int getEmpNumber() {
+        return empNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
+    public void setEmployeeNumber(int empNumber) {
+        this.empNumber = empNumber;
     }
 
     public String getFirstName() {
@@ -93,19 +102,19 @@ public class EmployeeInfo {
     }
 
     public int getWorkLoc() {
-        return workLoc;
+        return workLocation;
     }
 
-    public void setWorkLoc(int workLoc) {
-        this.workLoc = workLoc;
+    public void setWorkLoc(int workLocation) {
+        this.workLocation = workLocation;
     }
 
     public double getDeductRate() {
-        return deductRate;
+        return deductionRate;
     }
 
-    public void setDeductRate(double deductRate) {
-        this.deductRate = deductRate / 100;
+    public void setDeductRate(double deductionRate) {
+        this.deductionRate = deductionRate / 100;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,24 +124,7 @@ public class EmployeeInfo {
      * e.g. add a node, remove a node, display tree, etc.
      */
 
-    // display method
-    public void display() {
-        System.out.println("Employee Number: " + getEmployeeNumber());
-        System.out.println(getFirstName() + " " + getLastName());
-        System.out.println("Sex: " + getSex());
-        System.out.println("Deduction Rate: " + getDeductRate());
-        System.out.println();
-    }
-
-    // display method
-    public double calcIncome(int salary) {
-        return Math.round((salary - deducted(salary)) * 100) / 100;
-    }
-
-    // display method
-    public double deducted(int salary) {
-        return Math.round(salary * (getDeductRate()) * 100) / 100;
-    }
+    public void display(){};
 
     // display method
     public int encodeWorkLoc(String s) {
