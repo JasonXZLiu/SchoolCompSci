@@ -37,7 +37,7 @@ public class MyHashTable {
 
     /* methods
      * procedures that are specific to the class
-     * e.g. add a node, remove a node, display tree, etc.
+     * e.g.
      */
 
     // calcBucket

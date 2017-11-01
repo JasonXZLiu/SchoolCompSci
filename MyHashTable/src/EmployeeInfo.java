@@ -63,7 +63,7 @@ public class EmployeeInfo {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /* getter for the root position
+    /* getter for th
      * because the attributes are private, must make methods to access
      * getter returns the value of the attribute
      * setter sets a new value for the attribute
