@@ -82,7 +82,7 @@ public class MyHashTable {
     }
 
     public void importData() throws FileNotFoundException, IOException{
-        BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("data.csv"));
         String line = br.readLine();
         line = br.readLine();
         int cnt = 0;
@@ -105,7 +105,7 @@ public class MyHashTable {
         PrintWriter out = null;
         
         try{ 
-            out = new PrintWriter(new BufferedWriter(new FileWriter("data.txt")));
+            out = new PrintWriter(new BufferedWriter(new FileWriter("data.csv")));
             
             out.println("Type, Employee Number, First Name, LastName, Sex, Work Location, Deduction Rate, Hourly Wage, Hours Per Week, Weeks Per Year, Yearly Salary");
             
