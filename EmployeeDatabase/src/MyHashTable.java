@@ -49,7 +49,17 @@ public class MyHashTable {
         return tmp % buckets.length;
     }
 
-    public int searchByEmployeeNumber(int tmp) {
+    public EmployeeInfo searchByEmployeeNumber(int tmp) {
+        int tmp1 = calcBucket(tmp);
+        for (int i = 0; i < buckets[tmp1].size(); i++) {
+            if(buckets[tmp1].get(i).getEmpNumber() == tmp) {
+                return buckets[tmp1].get(i);
+            }
+        }
+        return null;
+    }
+    
+    public int search(int tmp) {
         int tmp1 = calcBucket(tmp);
         for (int i = 0; i < buckets[tmp1].size(); i++) {
             if(buckets[tmp1].get(i).getEmpNumber() == tmp) {
@@ -72,7 +82,7 @@ public class MyHashTable {
     public EmployeeInfo removeEmployee(int employeeNum) {
         EmployeeInfo removed = null;
         int tmp1 = calcBucket(employeeNum);
-        int i = searchByEmployeeNumber(employeeNum);
+        int i = search(employeeNum);
         if(buckets[tmp1].get(i).getEmpNumber() == employeeNum) {
             removed = buckets[tmp1].get(i);
             buckets[tmp1].remove(i);
@@ -101,13 +111,13 @@ public class MyHashTable {
         this.size = cnt;
     }
     
-    public void exportData(){
+    public synchronized boolean exportData(){
         PrintWriter out = null;
         
         try{ 
             out = new PrintWriter(new BufferedWriter(new FileWriter("data.csv")));
             
-            out.println("Type, Employee Number, First Name, LastName, Sex, Work Location, Deduction Rate, Hourly Wage, Hours Per Week, Weeks Per Year, Yearly Salary");
+            out.println("Type,Employee Number,First Name,LastName,Sex,Work Location,Deduction Rate,Hourly Wage,Hours Per Week,Weeks Per Year, Yearly Salary");
             
             for (int i = 0; i < buckets.length; i++) {
                 for (int j = 0; j < buckets[i].size(); j++) {
@@ -120,14 +130,17 @@ public class MyHashTable {
         } finally { 
 	   try{
 	      if(out != null)
-		 out.close();
+		out.close();
+                return true;
 	   }catch(Exception ex){
 	       System.out.println("Error in closing the BufferedWriter");
 	    }
 	}
+        return false;
     }
     
     public int getSize() {
         return this.size;
     }
+
 }

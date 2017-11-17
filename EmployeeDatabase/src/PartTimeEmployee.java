@@ -37,10 +37,10 @@ public class PartTimeEmployee extends EmployeeInfo {
     }
     
     public PartTimeEmployee(String[] temp) {
-        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], Double.parseDouble(temp[6]));
-        this.hourlyWage = Double.parseDouble(temp[7]);
-        this.hoursPerWeek = Double.parseDouble(temp[8]);
-        this.weeksPerYear = Double.parseDouble(temp[9]);
+        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], temp[6]);
+        this.hourlyWage = parseDouble(temp[7]);
+        this.hoursPerWeek = parseDouble(temp[8]);
+        this.weeksPerYear = parseDouble(temp[9]);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

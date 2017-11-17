@@ -29,7 +29,7 @@ public class FullTimeEmployee extends EmployeeInfo {
     }
     
     public FullTimeEmployee(String[] temp) {
-        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], Double.parseDouble(temp[6]));
+        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], temp[6]);
         this.yearlySalary = Double.parseDouble(temp[10]);
     }
 

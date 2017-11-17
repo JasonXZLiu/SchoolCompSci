@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="addEmployeePanel" min="-2" pref="471" max="-2" attributes="0"/>
+          <Component id="addEmployeePanel" min="-2" pref="441" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -77,12 +77,13 @@
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="submitButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -126,7 +127,11 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="pteEmployeePanel" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="fteEmployeePanel" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -184,7 +189,9 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="173" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="fteEmployeePanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="submitButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -294,33 +301,35 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="hourlyWageError" min="-2" max="-2" attributes="0"/>
+                          <Component id="hoursPerWeekError" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="weeksPerYearError" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="hourlyWageLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="hourlyWageTextField" min="-2" pref="93" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="hoursPerWeekLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="hoursPerWeekTextField" min="-2" pref="69" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="weeksPerYearLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="weeksPerYearTextField" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="hoursPerWeekLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="hoursPerWeekTextField" min="-2" pref="69" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="hourlyWageTextField" min="-2" pref="93" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="hourlyWageError" min="-2" max="-2" attributes="0"/>
-                              <Component id="hoursPerWeekError" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="weeksPerYearError" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="hourlyWageLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="129" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -328,37 +337,37 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Component id="hourlyWageTextField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="hoursPerWeekTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hoursPerWeekLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="weeksPerYearTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="weeksPerYearLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="hourlyWageError" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hourlyWageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="hoursPerWeekError" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="weeksPerYearError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="hourlyWageError" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="hoursPerWeekError" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="weeksPerYearError" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="hourlyWageTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hourlyWageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="hoursPerWeekTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hoursPerWeekLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="weeksPerYearTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="weeksPerYearLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -478,6 +487,56 @@
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JPanel" name="fteEmployeePanel">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="yearlySalaryError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="yearlySalaryLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="yearlySalaryTextField" min="-2" pref="79" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="yearlySalaryError" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="yearlySalaryTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="yearlySalaryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="yearlySalaryTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="$$$"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="yearlySalaryError">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="*"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="yearlySalaryLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="yearly salary:"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

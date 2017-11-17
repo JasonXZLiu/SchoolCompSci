@@ -1,2 +1,10 @@
-Type, Employee Number, First Name, LastName, Sex, Work Location, Deduction Rate, Hourly Wage, Hours Per Week, Weeks Per Year, Yearly Salary
-P,3,Johnathan,Smith,M,Mississauga,0.01,30.0,20.0,40.0,,
+Type,Employee Number,First Name,LastName,Sex,Work Location,Deduction Rate,Hourly Wage,Hours Per Week,Weeks Per Year, Yearly Salary
+F,5,Alan,Ma,M,San Francisco,0.0,,,,1000000.0,
+P,10,Cindy,He,F,Toronto,0.01,30.0,20.0,40.0,,
+P,1,Johnathan,Smith,M,Mississauga,0.01,30.0,20.0,40.0,,
+F,6,David ,Lu,M,Toronto,0.0,,,,100000.0,
+P,2,Jason ,Liu,M,Mississauga,0.01,30.0,20.0,40.0,,
+F,7,Yinuo ,Wang,M,New York City,0.0,,,,100000.0,
+F,3,William,King,M,Toronto,0.0,,,,100000.0,
+P,8,Kairui,Zeng,M,Toronto,0.01,30.0,20.0,40.0,,
+F,9,Sunny ,Wang,F,New York City,0.0,,,,500000.0,

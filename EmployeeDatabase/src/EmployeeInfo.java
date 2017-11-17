@@ -62,6 +62,21 @@ public class EmployeeInfo {
         this.workLocation = encodeWorkLoc(workLocation);
         this.deductionRate = deductionRate;
     }
+    
+    public EmployeeInfo(int empNumber, String firstName, String lastName, String sex, String workLocation, String deductionRate) {
+        this.empNumber = empNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        if(sex.equals("F")) {
+            this.sex = 1;
+        } else if(sex.equals("M")) {
+            this.sex = 0;
+        } else {
+            this.sex = 2;
+        }
+        this.workLocation = encodeWorkLoc(workLocation);
+        this.deductionRate = parseDouble(deductionRate);
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -128,17 +143,15 @@ public class EmployeeInfo {
 
     public void display(){};
    
-    // display method
     public int encodeWorkLoc(String s) {
         int i = encodeCities.size();
         if(cities.contains(s)) {
             return encodeCities.get(s);
         }
         else {
-            System.out.println("hi");
             encodeCities.put(s, i);
             cities.add(s);
-            return encodeCities.size();
+            return i;
         }
     }
     
@@ -152,9 +165,16 @@ public class EmployeeInfo {
                 return "O";
         }
     }
-    
+
     public String decodeWorkLoc(int i) {
-        System.out.println(cities.size());
-        return cities.get(i-1);
+        return cities.get(i);
+    }
+    
+      public Double parseDouble(String s) {
+        try {
+            return Double.parseDouble(s);
+        } catch (Exception e) {
+            return (double) 0;
+        }
     }
 }

@@ -171,7 +171,7 @@ public class MainFrame extends javax.swing.JFrame{
                     updateText();
                     addEmployeeFrame.dispose();
                 } else {
-                    addEmployeeFrame.error[1] = hashTable.searchByEmployeeNumber(addEmployeeFrame.empNumber);
+                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
                 }
             }
         });
@@ -185,31 +185,20 @@ public class MainFrame extends javax.swing.JFrame{
         searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 searchEmployeeFrame.setValues();
-                if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == -1) {
+                if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == null) {
                    searchEmployeeFrame.displayError();
                } else {
-                   updateText();
+                   EmployeeInfo employee = hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber);
+                   displaySearchedEmployee(employee);
                    searchEmployeeFrame.dispose();
-                   displaySearchedEmployee();
                }
             }
         });
     }//GEN-LAST:event_searchButtonActionPerformed
-
-    private void displaySearchedEmployee() {
-        displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
+    
+    private void displaySearchedEmployee(EmployeeInfo e) {
+        displayEmployeeFrame = new DisplayEmployeeFrame(e);
         displayEmployeeFrame.setVisible(true);
-        searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed (ActionEvent e) {
-                searchEmployeeFrame.setValues();
-                if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == -1) {
-                   searchEmployeeFrame.displayError();
-               } else {
-                   updateText();
-                   searchEmployeeFrame.dispose();
-               }
-            }
-        });
     }
     
     private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
@@ -282,13 +271,12 @@ public class MainFrame extends javax.swing.JFrame{
                   }
                  catch (Exception e) {
                 }
-                MainFrame mainFrame = new MainFrame();
+                final MainFrame mainFrame = new MainFrame();
                 mainFrame.setDefaultCloseOperation(MainFrame.DO_NOTHING_ON_CLOSE);
                 mainFrame.addWindowListener( new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent we) {
-                        System.out.println("bye");
-                        hashTable.exportData();
+                        if(hashTable.exportData()) mainFrame.dispose();
                     }
                 } );
                 mainFrame.setVisible(true);

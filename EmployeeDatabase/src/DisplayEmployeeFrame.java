@@ -24,6 +24,11 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         myTableModel = new MyTableModel(hT);
         initComponents();
     }
+    
+    public DisplayEmployeeFrame(EmployeeInfo e) {
+        myTableModel = new MyTableModel(e);
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +43,7 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +51,13 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
 
         jTable1.setModel(myTableModel);
         scrollPane.setViewportView(jTable1);
+
+        cancelButton.setText("cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,6 +70,10 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(804, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(424, 424, 424)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,8 +81,10 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,6 +104,11 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,6 +146,7 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTable1;
@@ -135,6 +160,11 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
 
     public MyTableModel(MyHashTable hT) {
        data = hT.getEmployees();
+    }
+    
+    public MyTableModel(EmployeeInfo e) {
+       data = new Object[1][10];
+       data[0] = e.toString().split(",");
     }
         
     public int getColumnCount() {
