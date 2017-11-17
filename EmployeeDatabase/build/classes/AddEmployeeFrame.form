@@ -23,7 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="addEmployeePanel" min="-2" pref="471" max="-2" attributes="0"/>
+=======
+          <Component id="addEmployeePanel" alignment="0" max="32767" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -34,9 +38,12 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="addEmployeePanel">
+<<<<<<< HEAD
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+=======
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
 
       <Layout>
         <DimensionLayout dim="0">
@@ -44,6 +51,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="deductionRateLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -72,10 +80,17 @@
                               <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                               <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
                           </Group>
+=======
+                      <Component id="addEmployeeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="submitButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -110,6 +125,48 @@
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+=======
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="firstNameTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="lastNameTextField" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="sexLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="femaleSelector" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Component id="maleSelector" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="otherSelector" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="deductionRateLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="deductionRateTextField" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="workLocationLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="workLocationTextField" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="139" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,6 +175,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="addEmployeeLabel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="typeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,6 +188,9 @@
                       <Component id="empNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+=======
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="firstNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="firstNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -139,7 +200,11 @@
                       <Component id="lastNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lastNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+=======
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="sexLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="femaleSelector" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -156,14 +221,24 @@
                       <Component id="deductionRateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="deductionRateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+=======
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="pteEmployeePanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="submitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+<<<<<<< HEAD
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+=======
+                  <EmptySpace max="-2" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
               </Group>
           </Group>
         </DimensionLayout>
@@ -198,9 +273,12 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Female"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="femaleSelectorActionPerformed"/>
           </Events>
+=======
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
         </Component>
         <Component class="javax.swing.JRadioButton" name="otherSelector">
           <Properties>
@@ -232,14 +310,23 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="ex. Smith"/>
           </Properties>
+<<<<<<< HEAD
+=======
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastNameTextFieldActionPerformed"/>
+          </Events>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
         </Component>
         <Component class="javax.swing.JTextField" name="workLocationTextField">
           <Properties>
             <Property name="text" type="java.lang.String" value="ex. Mississauga"/>
           </Properties>
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="workLocationTextFieldActionPerformed"/>
           </Events>
+=======
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
         </Component>
         <Component class="javax.swing.JTextField" name="deductionRateTextField">
           <Properties>
@@ -258,16 +345,26 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="submit"/>
           </Properties>
+<<<<<<< HEAD
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
           </AuxValues>
+=======
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
+          </Events>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
         </Component>
         <Container class="javax.swing.JPanel" name="pteEmployeePanel">
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="234" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -296,7 +393,11 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace min="0" pref="135" max="32767" attributes="0"/>
+=======
+                  <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -356,6 +457,7 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="typeLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="type:"/>
@@ -390,6 +492,8 @@
             <Property name="text" type="java.lang.String" value="employee number:"/>
           </Properties>
         </Component>
+=======
+>>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
       </SubComponents>
     </Container>
   </SubComponents>
