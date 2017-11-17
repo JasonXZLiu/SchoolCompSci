@@ -42,7 +42,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
                       <Component id="removeButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="addButton" min="-2" max="-2" attributes="0"/>
@@ -51,15 +50,6 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="253" max="32767" attributes="0"/>
-=======
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="addButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="removeButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="264" max="32767" attributes="0"/>
->>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
               </Group>
           </Group>
         </DimensionLayout>
@@ -71,17 +61,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
                       <Component id="statusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="removeButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="56" max="32767" attributes="0"/>
-=======
-                      <Component id="removeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="234" max="32767" attributes="0"/>
->>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
               </Group>
           </Group>
         </DimensionLayout>
@@ -112,14 +96,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeButtonActionPerformed"/>
           </Events>
         </Component>
-<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="statusLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel2"/>
           </Properties>
         </Component>
-=======
->>>>>>> d88fd25cad76a47e174b300df5ce829395b69f06
       </SubComponents>
     </Container>
   </SubComponents>
