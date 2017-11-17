@@ -1,5 +1,8 @@
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 /*
  * To change this template, choose Tools | Templates
@@ -11,34 +14,31 @@ import java.util.HashMap;
  * @author 529483
  */
 public class AddEmployeeFrame extends javax.swing.JFrame{
-    protected boolean error = false;  
+    protected int[] error = {0, -1};  
     protected boolean type = false;  
     protected int empNumber;
     protected String firstName;
     protected String lastName;
-    protected int sex; // encode e.g. 0 for M, 1 for F, 2 for other
-    protected int workLocation; // encode e.g. 0 for Mississauga
-    protected double deductionRate;
-    
-    // encode stuff
-    protected static HashMap<String, Integer> encodeCities = new HashMap<>();
-    protected static ArrayList<String> cities = new ArrayList<>();
+    protected int sex = -1; // encode e.g. 0 for M, 1 for F, 2 for other
+    protected String workLocation = null;
+    protected double deductionRate = -1;
     
     // for fte
-    protected double yearlySalary;
+    protected double yearlySalary = -1;
     
     // for pte
-    protected double hourlyWage;
-    protected double hoursPerWeek;
-    protected double weekPerYear;
+    protected double hourlyWage = -1;
+    protected double hoursPerWeek = -1;
+    protected double weeksPerYear = -1;
     
     /**
      * Creates new form AddEmployeeFrame
      */
     public AddEmployeeFrame() {
         initComponents();
-        
-        //fteEmployeePanel.setVisible(!type);
+        //fteEmployeePanel.setVisible(false);
+        //yearlySalaryError.setVisible(false);
+        resetErrors();
     }
     
     /**
@@ -66,18 +66,27 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         deductionRateTextField = new javax.swing.JTextField();
         cancelButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
-        pteEmployeePanel = new javax.swing.JPanel();
+        pteEmployeePanel = new javax.swing.JLayeredPane();
         hourlyWageLabel = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        hoursPerWeekLabel = new javax.swing.JLabel();
+        weeksPerYearLabel = new javax.swing.JLabel();
+        hourlyWageTextField = new javax.swing.JTextField();
+        hoursPerWeekTextField = new javax.swing.JTextField();
+        weeksPerYearTextField = new javax.swing.JTextField();
+        hourlyWageError = new javax.swing.JLabel();
+        hoursPerWeekError = new javax.swing.JLabel();
+        weeksPerYearError = new javax.swing.JLabel();
         typeLabel = new javax.swing.JLabel();
         pteSelector = new javax.swing.JRadioButton();
         fteSelector = new javax.swing.JRadioButton();
         empNumberTextField = new javax.swing.JTextField();
         empNumberLabel = new javax.swing.JLabel();
+        empNumberError = new javax.swing.JLabel();
+        firstNameError = new javax.swing.JLabel();
+        lastNameError = new javax.swing.JLabel();
+        sexError = new javax.swing.JLabel();
+        workLocationError = new javax.swing.JLabel();
+        deductionRateError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +99,11 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         sexLabel.setText("sex:");
 
         maleSelector.setText("Male");
+        maleSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maleSelectorActionPerformed(evt);
+            }
+        });
 
         femaleSelector.setText("Female");
         femaleSelector.addActionListener(new java.awt.event.ActionListener() {
@@ -119,11 +133,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         lastNameTextField.setText("ex. Smith");
 
         workLocationTextField.setText("ex. Mississauga");
-        workLocationTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workLocationTextFieldActionPerformed(evt);
-            }
-        });
 
         deductionRateTextField.setText("ex. 0.01");
 
@@ -138,63 +147,92 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         hourlyWageLabel.setText("hourly wage:");
 
-        jLabel8.setText("hours per week: ");
+        hoursPerWeekLabel.setText("hours per week: ");
 
-        jLabel9.setText("weeks per year:");
+        weeksPerYearLabel.setText("weeks per year:");
 
-        jTextField5.setText("$$$");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        hourlyWageTextField.setText("$$$");
+        hourlyWageTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                hourlyWageTextFieldActionPerformed(evt);
             }
         });
 
-        jTextField6.setText("$$$");
+        hoursPerWeekTextField.setText("$$$");
 
-        jTextField7.setText("$$$");
+        weeksPerYearTextField.setText("$$$");
+
+        hourlyWageError.setText("*");
+
+        hoursPerWeekError.setText("*");
+
+        weeksPerYearError.setText("*");
+
+        pteEmployeePanel.setLayer(hourlyWageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(hoursPerWeekLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(weeksPerYearLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(hourlyWageTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(hoursPerWeekTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(weeksPerYearTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(hourlyWageError, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(hoursPerWeekError, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(weeksPerYearError, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout pteEmployeePanelLayout = new javax.swing.GroupLayout(pteEmployeePanel);
         pteEmployeePanel.setLayout(pteEmployeePanelLayout);
         pteEmployeePanelLayout.setHorizontalGroup(
             pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pteEmployeePanelLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                        .addComponent(weeksPerYearLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(weeksPerYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                        .addComponent(hoursPerWeekLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(hoursPerWeekTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hourlyWageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(128, 128, 128))
             .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(jLabel9)
-                            .addGap(12, 12, 12)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                        .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                            .addComponent(hourlyWageLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                        .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(18, 18, 18)
+                    .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(hourlyWageError)
+                        .addComponent(hoursPerWeekError)
+                        .addComponent(weeksPerYearError, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(hourlyWageLabel)
+                    .addContainerGap(129, Short.MAX_VALUE)))
         );
         pteEmployeePanelLayout.setVerticalGroup(
             pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 135, Short.MAX_VALUE)
+            .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(hourlyWageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hoursPerWeekTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoursPerWeekLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(weeksPerYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weeksPerYearLabel))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                    .addGap(9, 9, 9)
+                    .addGap(58, 58, 58)
                     .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(hourlyWageLabel)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(hourlyWageError)
+                        .addComponent(hourlyWageLabel))
+                    .addGap(22, 22, 22)
+                    .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(hoursPerWeekError)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pteEmployeePanelLayout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addComponent(weeksPerYearError)))
+                    .addContainerGap(41, Short.MAX_VALUE)))
         );
 
         typeLabel.setText("type:");
@@ -222,6 +260,18 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         empNumberLabel.setText("employee number:");
 
+        empNumberError.setText("*");
+
+        firstNameError.setText("*");
+
+        lastNameError.setText("*");
+
+        sexError.setText("*");
+
+        workLocationError.setText("*");
+
+        deductionRateError.setText("*");
+
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
         addEmployeePanelLayout.setHorizontalGroup(
@@ -229,32 +279,45 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addComponent(deductionRateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(addEmployeeLabel)
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
                         .addComponent(typeLabel)
                         .addGap(18, 18, 18)
                         .addComponent(pteSelector)
                         .addGap(18, 18, 18)
-                        .addComponent(fteSelector))
+                        .addComponent(fteSelector)))
+                .addGap(221, 221, 221))
+            .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(workLocationError)
+                    .addComponent(deductionRateError))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                        .addComponent(deductionRateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
                         .addComponent(workLocationLabel)
                         .addGap(18, 18, 18)
                         .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(221, 221, 221))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cancelButton)
-                            .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(135, 135, 135)
+                        .addComponent(cancelButton)
+                        .addGap(29, 29, 29)
                         .addComponent(submitButton))
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(29, 29, 29)
+                        .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(empNumberError)
+                            .addComponent(firstNameError)
+                            .addComponent(lastNameError)
+                            .addComponent(sexError))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addEmployeePanelLayout.createSequentialGroup()
                                 .addComponent(empNumberLabel)
@@ -277,7 +340,10 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                                         .addGap(18, 18, 18)
                                         .addComponent(maleSelector)))
                                 .addGap(18, 18, 18)
-                                .addComponent(otherSelector)))))
+                                .addComponent(otherSelector))))
+                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addEmployeePanelLayout.setVerticalGroup(
@@ -290,35 +356,41 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                     .addComponent(typeLabel)
                     .addComponent(pteSelector)
                     .addComponent(fteSelector))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empNumberLabel)
-                    .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empNumberError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstNameLabel)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstNameError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastNameLabel)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastNameError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sexLabel)
                     .addComponent(femaleSelector)
                     .addComponent(maleSelector)
-                    .addComponent(otherSelector))
+                    .addComponent(otherSelector)
+                    .addComponent(sexError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(workLocationLabel)
-                    .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(workLocationError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deductionRateLabel)
-                    .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deductionRateError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(submitButton))
@@ -333,20 +405,15 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addEmployeePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void empNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empNumberTextFieldActionPerformed
         // TODO add your handling code here:
-        int tmp = checkToInteger(empNumberTextField.getText());
-        if(tmp == -1) {
-            // displayError();
-        } else {
-            this.empNumber = tmp;
-        }
+        
     }//GEN-LAST:event_empNumberTextFieldActionPerformed
 
     private void fteSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fteSelectorActionPerformed
@@ -367,19 +434,14 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         //fteEmployeePanel.setVisible(false);
     }//GEN-LAST:event_pteSelectorActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void hourlyWageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourlyWageTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_hourlyWageTextFieldActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void workLocationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workLocationTextFieldActionPerformed
-        // TODO add your handling code here:
-        this.workLocation = encodeWorkLoc(workLocationTextField.getText());
-    }//GEN-LAST:event_workLocationTextFieldActionPerformed
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
@@ -389,21 +451,95 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private void otherSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherSelectorActionPerformed
         // TODO add your handling code here:
         this.sex = 2;
+        femaleSelector.setSelected(false);
+        maleSelector.setSelected(false);
     }//GEN-LAST:event_otherSelectorActionPerformed
 
     private void femaleSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleSelectorActionPerformed
         // TODO add your handling code here:
         this.sex = 1;
+        otherSelector.setSelected(false);
+        maleSelector.setSelected(false);
     }//GEN-LAST:event_femaleSelectorActionPerformed
 
-    private void deductionRateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {  
-        int tmp = checkToInteger(deductionRateTextField.getText());
+    private void maleSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleSelectorActionPerformed
+        // TODO add your handling code here:
+        this.sex = 0;
+        otherSelector.setSelected(false);
+        femaleSelector.setSelected(false);
+    }//GEN-LAST:event_maleSelectorActionPerformed
+
+    private void setEmpNumber() {
+        int tmp = checkToInteger(empNumberTextField.getText());
         if(tmp == -1) {
             // displayError();
         } else {
-            this.deductionRate = tmp;
+            this.empNumber = tmp;
         }
     }
+    
+    private void setFirstName() {
+        this.firstName = firstNameTextField.getText();
+    }
+    
+    private void setLastName() {
+        this.lastName = lastNameTextField.getText();
+    }
+    
+    private void setWorkLocation() {
+        this.workLocation = workLocationTextField.getText();
+    }
+    
+    private void setDeductRate() {
+        this.deductionRate = checkToDouble(deductionRateTextField.getText());
+    }
+    
+    private void setYearlySalary() {
+        //this.yearlySalary = checkToInteger(yearlySalaryTextField.getText());
+    }
+    
+    private void setWeeksPerYear() {
+        this.weeksPerYear = checkToInteger(weeksPerYearTextField.getText());
+    }
+    
+    private void setHoursPerWeek() {
+        this.hoursPerWeek = checkToInteger(hoursPerWeekTextField.getText());
+    }
+    
+    private void setHourlyWage() {
+        this.hourlyWage = checkToInteger(hourlyWageTextField.getText());
+    }
+    
+    private void resetErrors() {
+        empNumberError.setVisible(false);
+        firstNameError.setVisible(false);
+        lastNameError.setVisible(false);
+        sexError.setVisible(false);
+        workLocationError.setVisible(false);
+        deductionRateError.setVisible(false);
+        hourlyWageError.setVisible(false);
+        hoursPerWeekError.setVisible(false);
+        weeksPerYearError.setVisible(false);
+    }
+    
+    public void setValues() {
+        setEmpNumber();
+        setFirstName();
+        setLastName();
+        setWorkLocation();
+        setDeductRate();
+        setYearlySalary();
+        setWeeksPerYear();
+        setHoursPerWeek();
+        setHourlyWage();
+    }
+    
+    Action action = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            setValues();
+        }
+    };
     
     private int checkToInteger(String str) {   
         try { 
@@ -413,27 +549,71 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         }
     }
     
-    private void maleSelectorActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-        this.sex = 0;
-    }   
-    
-    public int encodeWorkLoc(String s) {
-        int i = encodeCities.size();
-        if(cities.contains(s)) return encodeCities.get(s);
-        else {
-            encodeCities.put(s, i);
-            cities.add(s);
-            return encodeCities.size();
+    private double checkToDouble(String str) {   
+        try { 
+            return Double.parseDouble(str);
+        } catch(Exception e) {
+            return -1;
         }
     }
     
     public PartTimeEmployee createPartTimeEmployee() {
-        return new PartTimeEmployee(empNumber, firstName, lastName, sex, workLocation, deductionRate, hourlyWage, hoursPerWeek, weekPerYear);
+        System.out.println(workLocation);
+        return new PartTimeEmployee(empNumber, firstName, lastName, sex, workLocation, deductionRate, hourlyWage, hoursPerWeek, weeksPerYear);
     }
     
     public FullTimeEmployee createFullTimeEmployee() {
         return new FullTimeEmployee(empNumber, firstName, lastName, sex, workLocation, deductionRate, yearlySalary);
+    }
+   
+    public boolean checkError() {
+        resetErrors();
+        boolean b = false;
+        if(error[1] != -1 || empNumber == -1) {
+            empNumberError.setVisible(true);
+            b = true;
+        }
+        if(firstName == null) {
+            System.out.println(firstName);
+            firstNameError.setVisible(true);
+            b = true;
+        }
+        if(lastName == null) {
+            lastNameError.setVisible(true);
+            b = true;
+        }
+        if(sex == -1) {
+            sexError.setVisible(true);
+            b = true;
+        }
+        if(workLocation == null) {
+            workLocationError.setVisible(true);
+            b = true;
+        }
+        if(deductionRate == -1) {
+            deductionRateError.setVisible(true);
+            b = true;
+        }
+        if(type) {
+            if(weeksPerYear == -1) {
+                weeksPerYearError.setVisible(true);
+                b = true;
+            }
+            if(hoursPerWeek == -1) {
+                hoursPerWeekError.setVisible(true);
+                b = true;
+            }
+            if(hourlyWage == -1) {
+                hourlyWageError.setVisible(true);
+                b = true;
+            }
+        } else {
+            if(yearlySalary == -1) {
+                //yearlySalaryError.setVisible(true);
+                b = true;
+            }
+        }
+        return b;
     }
     
     /**
@@ -472,31 +652,40 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addEmployeeLabel;
-    private javax.swing.JPanel addEmployeePanel;
+    public javax.swing.JPanel addEmployeePanel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel deductionRateError;
     private javax.swing.JLabel deductionRateLabel;
     private javax.swing.JTextField deductionRateTextField;
+    private javax.swing.JLabel empNumberError;
     private javax.swing.JLabel empNumberLabel;
     private javax.swing.JTextField empNumberTextField;
     private javax.swing.JRadioButton femaleSelector;
+    private javax.swing.JLabel firstNameError;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JRadioButton fteSelector;
+    private javax.swing.JLabel hourlyWageError;
     private javax.swing.JLabel hourlyWageLabel;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField hourlyWageTextField;
+    private javax.swing.JLabel hoursPerWeekError;
+    private javax.swing.JLabel hoursPerWeekLabel;
+    private javax.swing.JTextField hoursPerWeekTextField;
+    private javax.swing.JLabel lastNameError;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JRadioButton maleSelector;
     private javax.swing.JRadioButton otherSelector;
-    private javax.swing.JPanel pteEmployeePanel;
+    private javax.swing.JLayeredPane pteEmployeePanel;
     private javax.swing.JRadioButton pteSelector;
+    private javax.swing.JLabel sexError;
     private javax.swing.JLabel sexLabel;
     protected javax.swing.JButton submitButton;
     private javax.swing.JLabel typeLabel;
+    private javax.swing.JLabel weeksPerYearError;
+    private javax.swing.JLabel weeksPerYearLabel;
+    private javax.swing.JTextField weeksPerYearTextField;
+    private javax.swing.JLabel workLocationError;
     private javax.swing.JLabel workLocationLabel;
     private javax.swing.JTextField workLocationTextField;
     // End of variables declaration//GEN-END:variables

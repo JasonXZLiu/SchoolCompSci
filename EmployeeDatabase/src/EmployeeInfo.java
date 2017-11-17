@@ -39,23 +39,25 @@ public class EmployeeInfo {
 
     public EmployeeInfo(){}
 
-    public EmployeeInfo(int empNumber, String firstName, String lastName, int sex, int workLocation, double deductionRate) {
+    public EmployeeInfo(int empNumber, String firstName, String lastName, int sex, String workLocation, double deductionRate) {
         this.empNumber = empNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
-        this.workLocation = workLocation;
+        this.workLocation = encodeWorkLoc(workLocation);
         this.deductionRate = deductionRate;
     }
-
+    
     public EmployeeInfo(int empNumber, String firstName, String lastName, String sex, String workLocation, double deductionRate) {
         this.empNumber = empNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         if(sex.equals("F")) {
             this.sex = 1;
-        } else {
+        } else if(sex.equals("M")) {
             this.sex = 0;
+        } else {
+            this.sex = 2;
         }
         this.workLocation = encodeWorkLoc(workLocation);
         this.deductionRate = deductionRate;
@@ -125,15 +127,34 @@ public class EmployeeInfo {
      */
 
     public void display(){};
-
+   
     // display method
     public int encodeWorkLoc(String s) {
         int i = encodeCities.size();
-        if(cities.contains(s)) return encodeCities.get(s);
+        if(cities.contains(s)) {
+            return encodeCities.get(s);
+        }
         else {
+            System.out.println("hi");
             encodeCities.put(s, i);
             cities.add(s);
             return encodeCities.size();
         }
+    }
+    
+    public String decodeSex(int i) {
+        switch (i) {
+            case 0:
+                return "M";
+            case 1:
+                return "F";
+            default:
+                return "O";
+        }
+    }
+    
+    public String decodeWorkLoc(int i) {
+        System.out.println(cities.size());
+        return cities.get(i-1);
     }
 }

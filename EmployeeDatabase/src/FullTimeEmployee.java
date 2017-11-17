@@ -18,15 +18,19 @@ public class FullTimeEmployee extends EmployeeInfo {
      */
 
     // constructor with
-    public FullTimeEmployee(int employeeNumber, String firstName, String lastName, int sex, int workLoc, double deductRate, double yearlySalary) {
+    public FullTimeEmployee(int employeeNumber, String firstName, String lastName, int sex, String workLoc, double deductRate, double yearlySalary) {
         super(employeeNumber, firstName, lastName, sex, workLoc, deductRate);
         this.yearlySalary = yearlySalary;
     }
-
-    // constructor with
+    
     public FullTimeEmployee(int employeeNumber, String firstName, String lastName, String sex, String workLoc, double deductRate, double yearlySalary) {
         super(employeeNumber, firstName, lastName, sex, workLoc, deductRate);
         this.yearlySalary = yearlySalary;
+    }
+    
+    public FullTimeEmployee(String[] temp) {
+        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], Double.parseDouble(temp[6]));
+        this.yearlySalary = Double.parseDouble(temp[10]);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,14 +64,26 @@ public class FullTimeEmployee extends EmployeeInfo {
     public double calcAnnualNetIncome() {
         return calcAnnualGrossIncome() * (1-getDeductRate());
     }
+    
+    public Object[] getInfo() {
+        Object[] tmp = new Object[10];
+        return tmp;
+    }
 
-    public void display() {
-        System.out.println("Full Time Employee");
-        System.out.println("Employee Number: " + getEmpNumber());
-        System.out.println(getFirstName() + " " + getLastName());
-        System.out.println("Sex: " + getSex());
-        System.out.println("Deduction Rate: " + getDeductRate());
-        System.out.println("Income: $" + calcAnnualNetIncome());
-        System.out.println();
+    public String toString() {
+        String tmp = "";
+        tmp += "F,";
+        tmp += getEmpNumber() + ",";
+        tmp += getFirstName() + ",";
+        tmp += getLastName() + ",";
+        tmp += decodeSex(getSex()) + ",";
+        tmp += decodeWorkLoc(getWorkLoc()) + ",";
+        tmp += getDeductRate() + ",";
+        tmp += ",";
+        tmp += ",";
+        tmp += ",";
+        tmp += this.yearlySalary;
+        tmp += ",";
+        return tmp;
     }
 }

@@ -22,19 +22,25 @@ public class PartTimeEmployee extends EmployeeInfo {
      */
 
     // constructor with
-    public PartTimeEmployee(int employeeNumber, String firstName, String lastName, int sex, int workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weekPerYear) {
+    public PartTimeEmployee(int employeeNumber, String firstName, String lastName, int sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weekPerYear) {
         super(employeeNumber, firstName, lastName, sex, workLoc, deductRate);
         this.hourlyWage = hourlyWage;
         this.hoursPerWeek = hoursPerWeek;
         this.weeksPerYear = weekPerYear;
     }
-
-    // constructor with
+    
     public PartTimeEmployee(int employeeNumber, String firstName, String lastName, String sex, String workLoc, double deductRate, double hourlyWage, double hoursPerWeek, double weekPerYear) {
         super(employeeNumber, firstName, lastName, sex, workLoc, deductRate);
         this.hourlyWage = hourlyWage;
         this.hoursPerWeek = hoursPerWeek;
         this.weeksPerYear = weekPerYear;
+    }
+    
+    public PartTimeEmployee(String[] temp) {
+        super(Integer.parseInt(temp[1]), temp[2], temp[3], temp[4], temp[5], Double.parseDouble(temp[6]));
+        this.hourlyWage = Double.parseDouble(temp[7]);
+        this.hoursPerWeek = Double.parseDouble(temp[8]);
+        this.weeksPerYear = Double.parseDouble(temp[9]);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,14 +85,26 @@ public class PartTimeEmployee extends EmployeeInfo {
     public double calcAnnualNetIncome() {
         return calcAnnualGrossIncome() * (1-getDeductRate());
     }
+    
+    public Object[] getInfo() {
+        Object[] tmp = new Object[10];
+        return tmp;
+    }
 
-    public void display() {
-        System.out.println("Part Time Employee");
-        System.out.println("Employee Number: " + getEmpNumber());
-        System.out.println(getFirstName() + " " + getLastName());
-        System.out.println("Sex: " + getSex());
-        System.out.println("Deduction Rate: " + getDeductRate());
-        System.out.println("Income: $" + calcAnnualNetIncome());
-        System.out.println();
+    public String toString() {
+        String tmp = "";
+        tmp += "P,";
+        tmp += getEmpNumber() + ",";
+        tmp += getFirstName() + ",";
+        tmp += getLastName() + ",";
+        tmp += decodeSex(getSex()) + ",";
+        tmp += decodeWorkLoc(getWorkLoc()) + ",";
+        tmp += getDeductRate() + ",";
+        tmp += this.hourlyWage + ",";
+        tmp += this.hoursPerWeek + ",";
+        tmp += this.weeksPerYear;
+        tmp += ",";
+        tmp += ",";
+        return tmp;
     }
 }

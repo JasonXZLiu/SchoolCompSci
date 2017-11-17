@@ -1,0 +1,2 @@
+Type, Employee Number, First Name, LastName, Sex, Work Location, Deduction Rate, Hourly Wage, Hours Per Week, Weeks Per Year, Yearly Salary
+P,33,    ex. Johnathan,    ex. Smith,O,    ex. Mississauga,5.0,3.0,2.0,1.0,,

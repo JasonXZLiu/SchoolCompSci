@@ -1,5 +1,17 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.TitledBorder;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,7 +24,9 @@ import java.awt.event.ActionListener;
 
 public class MainFrame extends javax.swing.JFrame{
     private AddEmployeeFrame addEmployeeFrame; 
-    protected MyHashTable hashTable = new MyHashTable(5);
+    private SearchEmployeeFrame searchEmployeeFrame; 
+    private DisplayEmployeeFrame displayEmployeeFrame; 
+    protected static MyHashTable hashTable = new MyHashTable(5);
     
     /**
      * Creates new form MainFrame
@@ -36,6 +50,8 @@ public class MainFrame extends javax.swing.JFrame{
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
+        searchButton = new javax.swing.JButton();
+        displayButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +74,22 @@ public class MainFrame extends javax.swing.JFrame{
 
         statusLabel.setText("jLabel2");
 
+        searchButton.setText("search");
+        searchButton.setToolTipText("");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        displayButton.setText("display");
+        displayButton.setToolTipText("");
+        displayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -70,7 +102,9 @@ public class MainFrame extends javax.swing.JFrame{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(addButton)
                         .addGap(83, 83, 83)
-                        .addComponent(statusLabel)))
+                        .addComponent(statusLabel))
+                    .addComponent(searchButton)
+                    .addComponent(displayButton))
                 .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,7 +118,11 @@ public class MainFrame extends javax.swing.JFrame{
                     .addComponent(statusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(removeButton)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(searchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(displayButton)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,7 +133,9 @@ public class MainFrame extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,6 +143,20 @@ public class MainFrame extends javax.swing.JFrame{
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here:
+        searchEmployeeFrame = new SearchEmployeeFrame();
+        searchEmployeeFrame.searchFrameLabel.setText("remove employee");
+        searchEmployeeFrame.setVisible(true);
+        searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+               searchEmployeeFrame.setValues();
+               if(searchEmployeeFrame.empNumber == -1 || hashTable.removeEmployee(searchEmployeeFrame.empNumber) == null) {
+                   searchEmployeeFrame.displayError();
+               } else {
+                   updateText();
+                   searchEmployeeFrame.dispose();
+               }
+            }
+        });
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -111,12 +165,58 @@ public class MainFrame extends javax.swing.JFrame{
         addEmployeeFrame.setVisible(true);
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                addToDatabase();
-                updateText();
-                addEmployeeFrame.dispose();
+                addEmployeeFrame.setValues();
+                if(!addEmployeeFrame.checkError()) {
+                    addToDatabase();
+                    updateText();
+                    addEmployeeFrame.dispose();
+                } else {
+                    addEmployeeFrame.error[1] = hashTable.searchByEmployeeNumber(addEmployeeFrame.empNumber);
+                }
             }
         });
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        searchEmployeeFrame = new SearchEmployeeFrame();
+        searchEmployeeFrame.searchFrameLabel.setText("search employee");
+        searchEmployeeFrame.setVisible(true);
+        searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                searchEmployeeFrame.setValues();
+                if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == -1) {
+                   searchEmployeeFrame.displayError();
+               } else {
+                   updateText();
+                   searchEmployeeFrame.dispose();
+                   displaySearchedEmployee();
+               }
+            }
+        });
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void displaySearchedEmployee() {
+        displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
+        displayEmployeeFrame.setVisible(true);
+        searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                searchEmployeeFrame.setValues();
+                if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == -1) {
+                   searchEmployeeFrame.displayError();
+               } else {
+                   updateText();
+                   searchEmployeeFrame.dispose();
+               }
+            }
+        });
+    }
+    
+    private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
+        // TODO add your handling code here:
+        displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
+        displayEmployeeFrame.setVisible(true);
+    }//GEN-LAST:event_displayButtonActionPerformed
 
     private void updateText() {
         statusLabel.setText("You have " + hashTable.getSize() + " employees in the database.");
@@ -162,15 +262,46 @@ public class MainFrame extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                try {                
+                    hashTable.importData();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                      if ("Nimbus".equals(info.getName())) {
+                        UIManager.put("nimbusBase",new Color(0xBB,0xC3,0xFF));
+                        UIManager.put("TitledBorder.position",TitledBorder.CENTER);
+                        UIManager.put("nimbusBlueGrey",new Color(0xD1,0xD1,0xD1));
+                        UIManager.put("control",new Color(0xFA,0xFA,0xFA));
+                        UIManager.put("Button.defaultButtonFollowsFocus",Boolean.TRUE);
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                      }
+                    }
+                  }
+                 catch (Exception e) {
+                }
+                MainFrame mainFrame = new MainFrame();
+                mainFrame.setDefaultCloseOperation(MainFrame.DO_NOTHING_ON_CLOSE);
+                mainFrame.addWindowListener( new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                        System.out.println("bye");
+                        hashTable.exportData();
+                    }
+                } );
+                mainFrame.setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton addButton;
+    private javax.swing.JButton displayButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton removeButton;
+    private javax.swing.JButton searchButton;
     private javax.swing.JLabel statusLabel;
     // End of variables declaration//GEN-END:variables
 
