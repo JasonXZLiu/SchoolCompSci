@@ -23,7 +23,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="addEmployeePanel" min="-2" pref="441" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="addEmployeePanel" pref="629" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -55,83 +58,83 @@
                   </Group>
                   <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="workLocationError" min="-2" max="-2" attributes="0"/>
-                      <Component id="deductionRateError" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="deductionRateLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="deductionRateTextField" min="-2" pref="101" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="workLocationLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="workLocationTextField" min="-2" pref="162" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="empNumberError" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstNameError" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lastNameError" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sexError" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="empNumberLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="empNumberTextField" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="firstNameTextField" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="lastNameTextField" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="sexLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="femaleSelector" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <Component id="maleSelector" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="otherSelector" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="pteEmployeePanel" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fteEmployeePanel" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                           <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           <Component id="submitButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="empNumberError" min="-2" max="-2" attributes="0"/>
-                              <Component id="firstNameError" min="-2" max="-2" attributes="0"/>
-                              <Component id="lastNameError" min="-2" max="-2" attributes="0"/>
-                              <Component id="sexError" min="-2" max="-2" attributes="0"/>
+                              <Component id="workLocationError" min="-2" max="-2" attributes="0"/>
+                              <Component id="deductionRateError" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="empNumberLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="empNumberTextField" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="deductionRateLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="deductionRateTextField" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="firstNameTextField" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="lastNameTextField" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="sexLabel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="femaleSelector" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Component id="maleSelector" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="workLocationLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="otherSelector" min="-2" max="-2" attributes="0"/>
+                                  <Component id="workLocationTextField" min="-2" pref="214" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pteEmployeePanel" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="fteEmployeePanel" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -204,26 +207,41 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="addEmployeeLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="add employee"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="firstNameLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="first name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastNameLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="last name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sexLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="sex:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="maleSelector">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Male"/>
           </Properties>
           <Events>
@@ -232,6 +250,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="femaleSelector">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Female"/>
           </Properties>
           <Events>
@@ -240,6 +261,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="otherSelector">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Other"/>
           </Properties>
           <Events>
@@ -248,16 +272,25 @@
         </Component>
         <Component class="javax.swing.JLabel" name="workLocationLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="work location:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="deductionRateLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="deduction rate:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="firstNameTextField">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ex. Johnathan"/>
           </Properties>
           <Events>
@@ -266,21 +299,33 @@
         </Component>
         <Component class="javax.swing.JTextField" name="lastNameTextField">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ex. Smith"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="workLocationTextField">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ex. Mississauga"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="deductionRateTextField">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ex. 0.01"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="cancel"/>
           </Properties>
           <Events>
@@ -289,6 +334,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="submitButton">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="submit"/>
           </Properties>
           <AuxValues>
@@ -375,21 +423,33 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="hourlyWageLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="hourly wage:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="hoursPerWeekLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="hours per week: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="weeksPerYearLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="weeks per year:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="hourlyWageTextField">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="$$$"/>
               </Properties>
               <Events>
@@ -398,26 +458,41 @@
             </Component>
             <Component class="javax.swing.JTextField" name="hoursPerWeekTextField">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="$$$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="weeksPerYearTextField">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="$$$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="hourlyWageError">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="hoursPerWeekError">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="weeksPerYearError">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="plainFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
@@ -425,11 +500,17 @@
         </Container>
         <Component class="javax.swing.JLabel" name="typeLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="type:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="pteSelector">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="part time employee"/>
           </Properties>
           <Events>
@@ -438,6 +519,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="fteSelector">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="full time employee"/>
           </Properties>
           <Events>
@@ -446,6 +530,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="empNumberTextField">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="ex. 193825"/>
           </Properties>
           <Events>
@@ -454,36 +541,57 @@
         </Component>
         <Component class="javax.swing.JLabel" name="empNumberLabel">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="employee number:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="empNumberError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="firstNameError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastNameError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sexError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="workLocationError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="deductionRateError">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="headerFont" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
@@ -522,16 +630,25 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="yearlySalaryTextField">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="headerFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="$$$"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="yearlySalaryError">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="headerFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="yearlySalaryLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="headerFont" type="code"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="yearly salary:"/>
               </Properties>
             </Component>

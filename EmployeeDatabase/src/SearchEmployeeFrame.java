@@ -1,3 +1,6 @@
+
+import java.awt.Font;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,6 +12,8 @@
  * @author jason_001
  */
 public class SearchEmployeeFrame extends javax.swing.JFrame {
+    private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
+    private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
     protected int empNumber = -1;
     protected String errorNumber;
     
@@ -38,6 +43,7 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        searchTextField.setFont(plainFont);
         searchTextField.setText("ex. 193825");
         searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,10 +51,13 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
             }
         });
 
+        searchLabel.setFont(plainFont);
         searchLabel.setText("employee number:");
 
+        searchFrameLabel.setFont(headerFont);
         searchFrameLabel.setText("search employee");
 
+        cancelButton.setFont(plainFont);
         cancelButton.setText("cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,8 +65,10 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
             }
         });
 
+        submitButton.setFont(plainFont);
         submitButton.setText("submit");
 
+        errorMsgLabel.setFont(plainFont);
         errorMsgLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

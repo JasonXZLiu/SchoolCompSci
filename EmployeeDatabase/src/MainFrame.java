@@ -1,11 +1,9 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +25,8 @@ public class MainFrame extends javax.swing.JFrame{
     private SearchEmployeeFrame searchEmployeeFrame; 
     private DisplayEmployeeFrame displayEmployeeFrame; 
     protected static MyHashTable hashTable = new MyHashTable(5);
+    private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
+    private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
     
     /**
      * Creates new form MainFrame
@@ -55,8 +55,10 @@ public class MainFrame extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(headerFont);
         jLabel1.setText("Employee Database");
 
+        addButton.setFont(plainFont);
         addButton.setText("add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +66,7 @@ public class MainFrame extends javax.swing.JFrame{
             }
         });
 
+        removeButton.setFont(plainFont);
         removeButton.setText("remove");
         removeButton.setToolTipText("");
         removeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -72,8 +75,10 @@ public class MainFrame extends javax.swing.JFrame{
             }
         });
 
+        statusLabel.setFont(plainFont);
         statusLabel.setText("jLabel2");
 
+        searchButton.setFont(plainFont);
         searchButton.setText("search");
         searchButton.setToolTipText("");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame{
             }
         });
 
+        displayButton.setFont(plainFont);
         displayButton.setText("display");
         displayButton.setToolTipText("");
         displayButton.addActionListener(new java.awt.event.ActionListener() {

@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
@@ -13,6 +14,9 @@ import javax.swing.table.TableModel;
  * @author jason_001
  */
 public class DisplayEmployeeFrame extends javax.swing.JFrame {
+    private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
+    private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
+    
     protected MyTableModel myTableModel;
     protected static MyHashTable hT;
     
@@ -47,8 +51,10 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(headerFont);
         jLabel1.setText("display employee");
 
+        jTable1.setFont(plainFont);
         jTable1.setModel(myTableModel);
         scrollPane.setViewportView(jTable1);
 
