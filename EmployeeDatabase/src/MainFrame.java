@@ -25,8 +25,8 @@ public class MainFrame extends javax.swing.JFrame{
     private SearchEmployeeFrame searchEmployeeFrame; 
     private DisplayEmployeeFrame displayEmployeeFrame; 
     protected static MyHashTable hashTable = new MyHashTable(5);
-    private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
-    private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
+    private static Font headerFont = new Font("Corbel", Font.BOLD, 32);
+    private static Font plainFont = new Font("Corbel", Font.PLAIN, 20);
     
     /**
      * Creates new form MainFrame
@@ -46,29 +46,29 @@ public class MainFrame extends javax.swing.JFrame{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        addButton = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
         removeButton = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         displayButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(headerFont);
-        jLabel1.setText("Employee Database");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        addButton.setFont(plainFont);
-        addButton.setText("add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
+        titleLabel.setFont(headerFont);
+        titleLabel.setText("employee database");
 
+        removeButton.setBackground(new java.awt.Color(86, 101, 115));
         removeButton.setFont(plainFont);
+        removeButton.setForeground(new java.awt.Color(255, 255, 255));
         removeButton.setText("remove");
         removeButton.setToolTipText("");
+        removeButton.setBorder(null);
+        removeButton.setBorderPainted(false);
+        removeButton.setContentAreaFilled(false);
+        removeButton.setOpaque(true);
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);
@@ -77,22 +77,50 @@ public class MainFrame extends javax.swing.JFrame{
 
         statusLabel.setFont(plainFont);
         statusLabel.setText("jLabel2");
+        statusLabel.setMaximumSize(new java.awt.Dimension(20, 20));
+        statusLabel.setMinimumSize(new java.awt.Dimension(20, 20));
+        statusLabel.setPreferredSize(new java.awt.Dimension(20, 30));
 
+        searchButton.setBackground(new java.awt.Color(86, 101, 115));
         searchButton.setFont(plainFont);
+        searchButton.setForeground(new java.awt.Color(255, 255, 255));
         searchButton.setText("search");
         searchButton.setToolTipText("");
+        searchButton.setBorder(null);
+        searchButton.setContentAreaFilled(false);
+        searchButton.setOpaque(true);
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
 
+        displayButton.setBackground(new java.awt.Color(86, 101, 115));
         displayButton.setFont(plainFont);
+        displayButton.setForeground(new java.awt.Color(255, 255, 255));
         displayButton.setText("display");
         displayButton.setToolTipText("");
+        displayButton.setBorder(null);
+        displayButton.setContentAreaFilled(false);
+        displayButton.setOpaque(true);
         displayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.setBackground(new java.awt.Color(86, 101, 115));
+        addButton.setFont(plainFont);
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("add");
+        addButton.setToolTipText("");
+        addButton.setBorder(null);
+        addButton.setBorderPainted(false);
+        addButton.setContentAreaFilled(false);
+        addButton.setOpaque(true);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
             }
         });
 
@@ -101,34 +129,38 @@ public class MainFrame extends javax.swing.JFrame{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(removeButton)
+                    .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addButton)
-                        .addGap(83, 83, 83)
-                        .addComponent(statusLabel))
-                    .addComponent(searchButton)
-                    .addComponent(displayButton))
-                .addContainerGap(253, Short.MAX_VALUE))
+                        .addComponent(titleLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(displayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addComponent(titleLabel)
                 .addGap(18, 18, 18)
+                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(statusLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removeButton)
-                .addGap(18, 18, 18)
-                .addComponent(searchButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(displayButton)
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(displayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,9 +171,7 @@ public class MainFrame extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -165,24 +195,7 @@ public class MainFrame extends javax.swing.JFrame{
         });
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-        addEmployeeFrame = new AddEmployeeFrame();
-        addEmployeeFrame.setVisible(true);
-        addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
-            @Override public void actionPerformed (ActionEvent e) {
-                addEmployeeFrame.setValues();
-                if(!addEmployeeFrame.checkError()) {
-                    addToDatabase();
-                    updateText();
-                    addEmployeeFrame.dispose();
-                } else {
-                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
-                }
-            }
-        });
-    }//GEN-LAST:event_addButtonActionPerformed
-
+    
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
         searchEmployeeFrame = new SearchEmployeeFrame();
@@ -212,6 +225,24 @@ public class MainFrame extends javax.swing.JFrame{
         displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
         displayEmployeeFrame.setVisible(true);
     }//GEN-LAST:event_displayButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        addEmployeeFrame = new AddEmployeeFrame();
+        addEmployeeFrame.setVisible(true);
+        addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                addEmployeeFrame.setValues();
+                if(!addEmployeeFrame.checkError()) {
+                    addToDatabase();
+                    updateText();
+                    addEmployeeFrame.dispose();
+                } else {
+                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
+                }
+            }
+        });
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void updateText() {
         statusLabel.setText("You have " + hashTable.getSize() + " employees in the database.");
@@ -262,21 +293,21 @@ public class MainFrame extends javax.swing.JFrame{
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                try {
-                    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                      if ("Nimbus".equals(info.getName())) {
-                        UIManager.put("nimbusBase",new Color(0xBB,0xC3,0xFF));
-                        UIManager.put("TitledBorder.position",TitledBorder.CENTER);
-                        UIManager.put("nimbusBlueGrey",new Color(0xD1,0xD1,0xD1));
-                        UIManager.put("control",new Color(0xFA,0xFA,0xFA));
-                        UIManager.put("Button.defaultButtonFollowsFocus",Boolean.TRUE);
-                        UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                      }
-                    }
-                  }
-                 catch (Exception e) {
-                }
+//                try {
+//                    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//                      if ("Nimbus".equals(info.getName())) {
+//                        UIManager.put("nimbusBase",new Color(0xBB,0xC3,0xFF));
+//                        UIManager.put("TitledBorder.position",TitledBorder.CENTER);
+//                        UIManager.put("nimbusBlueGrey",new Color(0xD1,0xD1,0xD1));
+//                        UIManager.put("control",new Color(0xFA,0xFA,0xFA));
+//                        UIManager.put("Button.defaultButtonFollowsFocus",Boolean.TRUE);
+//                        UIManager.setLookAndFeel(info.getClassName());
+//                        break;
+//                      }
+//                    }
+//                  }
+//                 catch (Exception e) {
+//                }
                 final MainFrame mainFrame = new MainFrame();
                 mainFrame.setDefaultCloseOperation(MainFrame.DO_NOTHING_ON_CLOSE);
                 mainFrame.addWindowListener( new WindowAdapter() {
@@ -290,13 +321,13 @@ public class MainFrame extends javax.swing.JFrame{
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton addButton;
+    private javax.swing.JButton addButton;
     private javax.swing.JButton displayButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel statusLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
 }
