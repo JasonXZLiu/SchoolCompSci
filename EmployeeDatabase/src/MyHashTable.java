@@ -30,20 +30,6 @@ public class MyHashTable {
             buckets[i] = new ArrayList<EmployeeInfo>();
         }
     }
-
-    public Object[][] getEmployees() {
-        Object[][] tmp = new Object[this.size * this.k][10];
-        int cnt = 0;
-        for(int i = 0; i < this.k; i++) {
-            if(buckets[i] != null){
-                for(int j = 0; j < buckets[i].size(); j++) {
-                    tmp[cnt] = buckets[i].get(j).toString().split(",");
-                    cnt++;
-                }
-            }
-        }
-        return tmp;
-    }
     
     public int calcBucket(int tmp) {
         return tmp % buckets.length;
@@ -139,8 +125,16 @@ public class MyHashTable {
         return false;
     }
     
+    public int getK() {
+        return this.k;
+    }
+    
     public int getSize() {
         return this.size;
+    }
+    
+    public int getCompleteSize() {
+        return this.size * this.k;
     }
 
 }

@@ -221,14 +221,22 @@ public class MainFrame extends javax.swing.JFrame{
     }
     
     private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
-        // TODO add your handling code here:
         displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
         displayEmployeeFrame.setVisible(true);
+        displayEmployeeFrame.editButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                int blah = displayEmployeeFrame.checkForSelected();
+                if(blah != -1) {
+                    editEmployee(blah);
+                    displayEmployeeFrame.dispose();
+                }
+            }
+        });
     }//GEN-LAST:event_displayButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        addEmployeeFrame = new AddEmployeeFrame();
+        addEmployeeFrame = new AddEmployeeFrame(false, null);
         addEmployeeFrame.setVisible(true);
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
@@ -256,6 +264,24 @@ public class MainFrame extends javax.swing.JFrame{
             FullTimeEmployee employee = addEmployeeFrame.createFullTimeEmployee();
             hashTable.addEmployee(employee);
         }
+    }
+
+    public void editEmployee(int i) {
+        EmployeeInfo e = hashTable.searchByEmployeeNumber(i);
+        addEmployeeFrame = new AddEmployeeFrame(true, e);
+        addEmployeeFrame.setVisible(true);
+        addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
+            @Override public void actionPerformed (ActionEvent e) {
+                addEmployeeFrame.setValues();
+                if(!addEmployeeFrame.checkError()) {
+                    addToDatabase();
+                    updateText();
+                    addEmployeeFrame.dispose();
+                } else {
+                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
+                }
+            }
+        });
     }
     
     /**

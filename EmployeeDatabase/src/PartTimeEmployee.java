@@ -87,7 +87,7 @@ public class PartTimeEmployee extends EmployeeInfo {
     }
     
     public Object[] getInfo() {
-        Object[] tmp = new Object[10];
+        Object[] tmp = new Object[12];
         return tmp;
     }
 
@@ -102,8 +102,10 @@ public class PartTimeEmployee extends EmployeeInfo {
         tmp += getDeductRate() + ",";
         tmp += this.hourlyWage + ",";
         tmp += this.hoursPerWeek + ",";
-        tmp += this.weeksPerYear;
+        tmp += this.weeksPerYear + ",";
         tmp += ",";
+        tmp += this.calcAnnualGrossIncome() + ",";
+        tmp += this.calcAnnualNetIncome() + ",";
         tmp += ",";
         return tmp;
     }

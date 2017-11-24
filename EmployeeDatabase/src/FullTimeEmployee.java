@@ -66,10 +66,10 @@ public class FullTimeEmployee extends EmployeeInfo {
     }
     
     public Object[] getInfo() {
-        Object[] tmp = new Object[10];
+        Object[] tmp = new Object[12];
         return tmp;
     }
-
+    
     public String toString() {
         String tmp = "";
         tmp += "F,";
@@ -82,8 +82,9 @@ public class FullTimeEmployee extends EmployeeInfo {
         tmp += ",";
         tmp += ",";
         tmp += ",";
-        tmp += this.yearlySalary;
-        tmp += ",";
+        tmp += this.yearlySalary + ",";
+        tmp += this.calcAnnualGrossIncome() + ",";
+        tmp += this.calcAnnualNetIncome() + ",";
         return tmp;
     }
 }

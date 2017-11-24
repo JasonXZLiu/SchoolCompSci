@@ -1,6 +1,9 @@
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /*
@@ -16,24 +19,43 @@ import javax.swing.table.TableModel;
 public class DisplayEmployeeFrame extends javax.swing.JFrame {
     private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
     private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
-    
-    protected MyTableModel myTableModel;
+    private String [] header = {"Type", "Empoyee Number", "First Name", "Last Name", "Sex", "Work Location", "Deduction Rate", "Hourly Wage", "Hours/Week", "Weaks/Year", "Yearly Salary", "Net Income", "Gross Income"};
+    private DefaultTableModel dtm = new DefaultTableModel(0, 0);
     protected static MyHashTable hT;
     
     /**
      * Creates new form DisplayEmployeeFrame
      */
+    
     public DisplayEmployeeFrame(MyHashTable hT) {
         this.hT = hT;
-        myTableModel = new MyTableModel(hT);
+        createModel();      
         initComponents();
+        errorLabel.setVisible(false);
     }
     
     public DisplayEmployeeFrame(EmployeeInfo e) {
-        myTableModel = new MyTableModel(e);
         initComponents();
+        errorLabel.setVisible(false);
     }
 
+    public void createModel() {
+        dtm.setColumnIdentifiers(header);
+        for(int i = 0; i < hT.getK(); i++) {
+            if(hT.buckets[i] != null){
+                String[] a; 
+                for(int j = 0; j < hT.buckets[i].size(); j++) {
+                    a = hT.buckets[i].get(j).toString().split(",");
+                    dtm.addRow(a);
+                }
+            }
+        }
+    }
+    
+    private void displayError() {
+        errorLabel.setVisible(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,8 +68,10 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        displayTable = new javax.swing.JTable();
         cancelButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,9 +83,8 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         scrollPane.setFont(plainFont
         );
 
-        jTable1.setFont(plainFont);
-        jTable1.setModel(myTableModel);
-        scrollPane.setViewportView(jTable1);
+        displayTable.setModel(dtm);
+        scrollPane.setViewportView(displayTable);
 
         cancelButton.setBackground(new java.awt.Color(231, 76, 60));
         cancelButton.setFont(plainFont
@@ -77,20 +100,45 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
             }
         });
 
+        editButton.setBackground(new java.awt.Color(36, 113, 163));
+        editButton.setFont(plainFont
+        );
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("edit");
+        editButton.setBorder(null);
+        editButton.setContentAreaFilled(false);
+        editButton.setMaximumSize(new java.awt.Dimension(31, 15));
+        editButton.setMinimumSize(new java.awt.Dimension(31, 15));
+        editButton.setOpaque(true);
+        editButton.setPreferredSize(new java.awt.Dimension(31, 15));
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        errorLabel.setFont(plainFont
+        );
+        errorLabel.setText("please select an employee");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(428, 428, 428)
+                .addGap(300, 300, 300)
                 .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 456, Short.MAX_VALUE))
+                .addGap(106, 106, 106)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorLabel)
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -99,11 +147,15 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
+                .addGap(14, 14, 14)
+                .addComponent(errorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,9 +166,7 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -127,6 +177,19 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         super.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    public int checkForSelected() {
+        int blah = displayTable.getSelectedRow();
+        if(blah == -1) {
+            displayError();
+            return -1;
+        }
+        return Integer.valueOf((String) displayTable.getModel().getValueAt(blah, 1)); 
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -164,52 +227,11 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JTable displayTable;
+    protected javax.swing.JButton editButton;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
-    
-    class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = { "Type", "Employee #", "Name", "Sex", "Work Location", "Deduction Rate",
-            "Hourly Wage", "Hours/Week", "Weeks/Year", "Yearly Salary" };
-        private Object[][] data;
-
-    public MyTableModel(MyHashTable hT) {
-       data = hT.getEmployees();
-    }
-    
-    public MyTableModel(EmployeeInfo e) {
-       data = new Object[1][10];
-       data[0] = e.toString().split(",");
-    }
-        
-    public int getColumnCount() {
-      return columnNames.length;
-    }
-
-    public int getRowCount() {
-      return data.length;
-    }
-
-    public String getColumnName(int col) {
-      return columnNames[col];
-    }
-
-    public Object getValueAt(int row, int col) {
-      return data[row][col];
-    }
-
-    public Class getColumnClass(int c) {
-      return getValueAt(0, c).getClass();
-    }
-
-    public boolean isCellEditable(int row, int col) {
-        if (col < 2) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    }
 }
