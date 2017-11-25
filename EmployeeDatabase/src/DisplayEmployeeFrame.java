@@ -17,8 +17,8 @@ import javax.swing.table.TableModel;
  * @author jason_001
  */
 public class DisplayEmployeeFrame extends javax.swing.JFrame {
-    private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
-    private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
+    private static Font headerFont = new Font("Corbel", Font.BOLD, 32);
+    private static Font plainFont = new Font("Corbel", Font.PLAIN, 20);
     private String [] header = {"Type", "Empoyee Number", "First Name", "Last Name", "Sex", "Work Location", "Deduction Rate", "Hourly Wage", "Hours/Week", "Weaks/Year", "Yearly Salary", "Net Income", "Gross Income"};
     private DefaultTableModel dtm = new DefaultTableModel(0, 0);
     protected static MyHashTable hT;
