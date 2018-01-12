@@ -307,11 +307,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         deductionRateTextField.setFont(plainFont);
         deductionRateTextField.setText("ex. 0.01");
-        deductionRateTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deductionRateTextFieldActionPerformed(evt);
-            }
-        });
 
         deductionRateError.setFont(plainFont
         );
@@ -455,11 +450,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         workLocationTextField.setFont(plainFont);
         workLocationTextField.setText("ex. Mississauga");
-        workLocationTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workLocationTextFieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout workLocationPanelLayout = new javax.swing.GroupLayout(workLocationPanel);
         workLocationPanel.setLayout(workLocationPanelLayout);
@@ -490,11 +480,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         yearlySalaryTextField.setFont(plainFont
         );
         yearlySalaryTextField.setText("$$$");
-        yearlySalaryTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yearlySalaryTextFieldActionPerformed(evt);
-            }
-        });
 
         yearlySalaryError.setFont(plainFont
         );
@@ -537,11 +522,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         hourlyWageTextField.setFont(plainFont);
         hourlyWageTextField.setText("$$$");
-        hourlyWageTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hourlyWageTextFieldActionPerformed(evt);
-            }
-        });
 
         hoursPerWeekTextField.setFont(plainFont);
         hoursPerWeekTextField.setText("$$$");
@@ -556,11 +536,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         weeksPerYearTextField.setFont(plainFont);
         weeksPerYearTextField.setText("$$$");
-        weeksPerYearTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                weeksPerYearTextFieldActionPerformed(evt);
-            }
-        });
 
         weeksPerYearLabel.setFont(plainFont);
         weeksPerYearLabel.setText("weeks per year:");
@@ -682,11 +657,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         submitButton.setBorderPainted(false);
         submitButton.setContentAreaFilled(false);
         submitButton.setOpaque(true);
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
@@ -699,7 +669,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                         .addComponent(titleEmployeeLabel))
                     .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
+                        .addGap(150, 150, 150)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -759,10 +729,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         fteEmployeePanel.setVisible(false);
     }//GEN-LAST:event_pteSelectorActionPerformed
 
-    private void hourlyWageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourlyWageTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hourlyWageTextFieldActionPerformed
-
     private void otherSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherSelectorActionPerformed
         // TODO add your handling code here:
         this.sex = 2;
@@ -783,26 +749,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         otherSelector.setSelected(false);
         femaleSelector.setSelected(false);
     }//GEN-LAST:event_maleSelectorActionPerformed
-
-    private void deductionRateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deductionRateTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deductionRateTextFieldActionPerformed
-
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
-
-    private void workLocationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workLocationTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_workLocationTextFieldActionPerformed
-
-    private void weeksPerYearTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weeksPerYearTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_weeksPerYearTextFieldActionPerformed
-
-    private void yearlySalaryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearlySalaryTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yearlySalaryTextFieldActionPerformed
     
     private void setEmpNumber() {
         int tmp = checkToInteger(empNumberTextField.getText());

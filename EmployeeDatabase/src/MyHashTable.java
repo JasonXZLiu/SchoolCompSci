@@ -9,9 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * Created by jason_001 on 10/18/2017.
- */
+
 public class MyHashTable {
 
     /* attributes

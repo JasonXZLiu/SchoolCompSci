@@ -1,25 +1,14 @@
 
 import java.awt.Font;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author jason_001
- */
+// 
 public class SearchEmployeeFrame extends javax.swing.JFrame {
     private static Font headerFont = new Font("Corbel", Font.PLAIN, 24);
     private static Font plainFont = new Font("Corbel", Font.PLAIN, 16);
     protected int empNumber = -1;
     protected String errorNumber;
     
-    /**
-     * Creates new form RemoveEmployeeFrame
-     */
+    // creates new form SearchEmployeeFrame
     public SearchEmployeeFrame() {
         initComponents();
         errorMsgLabel.setVisible(false);
@@ -58,11 +47,6 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
 
         searchTextField.setFont(plainFont);
         searchTextField.setText("ex. 193825");
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -76,11 +60,6 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
         submitButton.setBorderPainted(false);
         submitButton.setContentAreaFilled(false);
         submitButton.setOpaque(true);
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
 
         cancelButton.setBackground(new java.awt.Color(231, 76, 60));
         cancelButton.setFont(plainFont
@@ -128,7 +107,7 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
                 .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(155, 155, 155)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,15 +154,6 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_searchTextFieldActionPerformed
-
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:

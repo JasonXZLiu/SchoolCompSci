@@ -111,11 +111,6 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         editButton.setMinimumSize(new java.awt.Dimension(31, 15));
         editButton.setOpaque(true);
         editButton.setPreferredSize(new java.awt.Dimension(31, 15));
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
 
         errorLabel.setFont(plainFont
         );
@@ -176,10 +171,6 @@ public class DisplayEmployeeFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         super.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButtonActionPerformed
 
     public int checkForSelected() {
         int blah = displayTable.getSelectedRow();
