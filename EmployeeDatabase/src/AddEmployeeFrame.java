@@ -5,54 +5,53 @@ import java.util.HashMap;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author 529483
- */
+// AddEmployeeFrame used to add, edit, and display an employee
 public class AddEmployeeFrame extends javax.swing.JFrame{
+    // set default font 
     private static Font headerFont = new Font("Corbel", Font.BOLD, 32);
     private static Font plainFont = new Font("Corbel", Font.PLAIN, 20);
     
     protected int[] error = {0, -1};  
+    
+    // attributes for Employee
     protected boolean type = false;  
     protected int empNumber;
     protected String firstName;
-    protected String lastName;
+    protected String lastName; 
     protected int sex = -1; // encode e.g. 0 for M, 1 for F, 2 for other
     protected String workLocation = null;
     protected double deductionRate = -1;
     
-    // for fte
+    // attributes for FullTimeEmployee (set default values used for error checking later)
     protected double yearlySalary = -1;
     
-    // for pte
+    // attributes for PartTimeEmployee (set default values used for error checking later)
     protected double hourlyWage = -1;
     protected double hoursPerWeek = -1;
     protected double weeksPerYear = -1;
-    
-    /**
-     * Creates new form AddEmployeeFrame
-     */
-    public AddEmployeeFrame(boolean edit, EmployeeInfo e) {
+ 
+    // creates new form AddEmployeeFrame
+    public AddEmployeeFrame(int edit, EmployeeInfo e) {
+        // initializes AddEmployeeFrame's components
         initComponents();
         pteEmployeePanel.setVisible(false);
         fteEmployeePanel.setVisible(false);
-        yearlySalaryError.setVisible(false);
         resetErrors();
-        if(edit) {
+        if(edit == 2) {
+            // initializes edit components
             initEdit(e);
-        } 
+        } else if (edit == 0) {
+            initEdit(e);
+            submitButton.setVisible(false);
+        }
     }
     
+    // sets TextField values to the related employee's initial values
     private void initEdit(EmployeeInfo e) {
         titleEmployeeLabel.setText("edit employee"); 
         String[] tmp = e.toString().split(",");
         if(tmp[0].equals("P")) {
+            type = tmp[0].equals("P");
             pteEmployeePanel.setVisible(true);
             pteSelector.setSelected(true);
             hourlyWageTextField.setText(tmp[6]);
@@ -61,23 +60,24 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         } else {
             fteEmployeePanel.setVisible(true);
             fteSelector.setSelected(true);
-            yearlySalaryTextField.setText(tmp[9]);
+            yearlySalaryTextField.setText(tmp[10]);
         }
         initEmployeeComponents(tmp);
    }
     
     private void initEmployeeComponents(String[] tmp) {
-        firstNameTextField.setText(tmp[1]);
-        lastNameTextField.setText(tmp[2]);
-        if(tmp[3].equals("0")) {
+        empNumberTextField.setText(tmp[1]);
+        firstNameTextField.setText(tmp[2]);
+        lastNameTextField.setText(tmp[3]);
+        if(tmp[4].equals("0")) {
             maleSelector.setSelected(true);
-        } else if(tmp[3].equals("1")) {
+        } else if(tmp[4].equals("1")) {
             femaleSelector.setSelected(true);
         } else {
             otherSelector.setSelected(true);
         }
-        workLocationTextField.setText(tmp[4]);
-        deductionRateTextField.setText(tmp[5]);
+        workLocationTextField.setText(tmp[5]);
+        deductionRateTextField.setText(tmp[6]);
     }
     
     /**
@@ -91,18 +91,25 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         addEmployeePanel = new javax.swing.JPanel();
         titleEmployeeLabel = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
+        mainPanel = new javax.swing.JPanel();
+        empNumberPanel = new javax.swing.JPanel();
+        empNumberLabel = new javax.swing.JLabel();
+        empNumberTextField = new javax.swing.JTextField();
+        empNumberError = new javax.swing.JLabel();
+        typePanel = new javax.swing.JPanel();
+        empNumberError1 = new javax.swing.JLabel();
+        pteSelector = new javax.swing.JRadioButton();
+        typeLabel = new javax.swing.JLabel();
+        fteSelector = new javax.swing.JRadioButton();
+        firstNamePanel = new javax.swing.JPanel();
         firstNameLabel = new javax.swing.JLabel();
-        lastNameLabel = new javax.swing.JLabel();
-        sexLabel = new javax.swing.JLabel();
-        maleSelector = new javax.swing.JRadioButton();
-        femaleSelector = new javax.swing.JRadioButton();
-        otherSelector = new javax.swing.JRadioButton();
-        workLocationLabel = new javax.swing.JLabel();
-        deductionRateLabel = new javax.swing.JLabel();
         firstNameTextField = new javax.swing.JTextField();
-        lastNameTextField = new javax.swing.JTextField();
-        workLocationTextField = new javax.swing.JTextField();
+        firstNameError = new javax.swing.JLabel();
+        deductRatePanel = new javax.swing.JPanel();
+        deductionRateLabel = new javax.swing.JLabel();
         deductionRateTextField = new javax.swing.JTextField();
+        deductionRateError = new javax.swing.JLabel();
         pteEmployeePanel = new javax.swing.JLayeredPane();
         hourlyWageLabel = new javax.swing.JLabel();
         hoursPerWeekLabel = new javax.swing.JLabel();
@@ -113,73 +120,161 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         weeksPerYearTextField = new javax.swing.JTextField();
         weeksPerYearLabel = new javax.swing.JLabel();
         weeksPerYearError = new javax.swing.JLabel();
-        typeLabel = new javax.swing.JLabel();
-        pteSelector = new javax.swing.JRadioButton();
-        fteSelector = new javax.swing.JRadioButton();
-        empNumberTextField = new javax.swing.JTextField();
-        empNumberLabel = new javax.swing.JLabel();
-        empNumberError = new javax.swing.JLabel();
-        firstNameError = new javax.swing.JLabel();
-        lastNameError = new javax.swing.JLabel();
-        sexError = new javax.swing.JLabel();
-        workLocationError = new javax.swing.JLabel();
-        deductionRateError = new javax.swing.JLabel();
-        submitButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
         fteEmployeePanel = new javax.swing.JPanel();
         yearlySalaryTextField = new javax.swing.JTextField();
         yearlySalaryError = new javax.swing.JLabel();
         yearlySalaryLabel = new javax.swing.JLabel();
+        fteEmployeePanel1 = new javax.swing.JPanel();
+        maleSelector = new javax.swing.JRadioButton();
+        sexLabel = new javax.swing.JLabel();
+        sexError = new javax.swing.JLabel();
+        otherSelector = new javax.swing.JRadioButton();
+        femaleSelector = new javax.swing.JRadioButton();
+        lastNamePanel = new javax.swing.JPanel();
+        lastNameTextField = new javax.swing.JTextField();
+        lastNameError = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel();
+        workLocationPanel = new javax.swing.JPanel();
+        workLocationLabel = new javax.swing.JLabel();
+        workLocationError = new javax.swing.JLabel();
+        workLocationTextField = new javax.swing.JTextField();
+        submitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 620));
+        setPreferredSize(new java.awt.Dimension(546, 509));
         setResizable(false);
-        setSize(new java.awt.Dimension(500, 620));
+        setSize(new java.awt.Dimension(546, 509));
 
         addEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
-        addEmployeePanel.setPreferredSize(new java.awt.Dimension(500, 620));
+        addEmployeePanel.setPreferredSize(new java.awt.Dimension(546, 509));
 
         titleEmployeeLabel.setFont(headerFont);
         titleEmployeeLabel.setText("add employee");
 
+        cancelButton.setBackground(new java.awt.Color(231, 76, 60));
+        cancelButton.setFont(plainFont
+        );
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setText("cancel");
+        cancelButton.setToolTipText("");
+        cancelButton.setBorder(null);
+        cancelButton.setBorderPainted(false);
+        cancelButton.setContentAreaFilled(false);
+        cancelButton.setOpaque(true);
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        empNumberPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        empNumberLabel.setFont(plainFont
+        );
+        empNumberLabel.setText("employee number:");
+
+        empNumberTextField.setFont(plainFont
+        );
+        empNumberTextField.setText("ex. 193825");
+        empNumberTextField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        empNumberTextField.setCaretColor(new java.awt.Color(28, 40, 51));
+        empNumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empNumberTextFieldActionPerformed(evt);
+            }
+        });
+
+        empNumberError.setFont(plainFont
+        );
+        empNumberError.setForeground(new java.awt.Color(231, 76, 60));
+        empNumberError.setText("*");
+
+        javax.swing.GroupLayout empNumberPanelLayout = new javax.swing.GroupLayout(empNumberPanel);
+        empNumberPanel.setLayout(empNumberPanelLayout);
+        empNumberPanelLayout.setHorizontalGroup(
+            empNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(empNumberPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(empNumberError)
+                .addGap(14, 14, 14)
+                .addComponent(empNumberLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        empNumberPanelLayout.setVerticalGroup(
+            empNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, empNumberPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(empNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empNumberLabel)
+                    .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empNumberError))
+                .addGap(5, 5, 5))
+        );
+
+        typePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        empNumberError1.setFont(plainFont
+        );
+        empNumberError1.setForeground(new java.awt.Color(231, 76, 60));
+        empNumberError1.setText("*");
+
+        pteSelector.setFont(plainFont
+        );
+        pteSelector.setText("part time employee");
+        pteSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pteSelectorActionPerformed(evt);
+            }
+        });
+
+        typeLabel.setFont(plainFont
+        );
+        typeLabel.setText("type:");
+
+        fteSelector.setFont(plainFont
+        );
+        fteSelector.setText("full time employee");
+        fteSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fteSelectorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout typePanelLayout = new javax.swing.GroupLayout(typePanel);
+        typePanel.setLayout(typePanelLayout);
+        typePanelLayout.setHorizontalGroup(
+            typePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(typePanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(empNumberError1)
+                .addGap(15, 15, 15)
+                .addComponent(typeLabel)
+                .addGap(18, 18, 18)
+                .addComponent(pteSelector)
+                .addGap(18, 18, 18)
+                .addComponent(fteSelector)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        typePanelLayout.setVerticalGroup(
+            typePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, typePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(typePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fteSelector)
+                    .addComponent(pteSelector)
+                    .addComponent(typeLabel)
+                    .addComponent(empNumberError1))
+                .addGap(5, 5, 5))
+        );
+
+        firstNamePanel.setBackground(new java.awt.Color(255, 255, 255));
+
         firstNameLabel.setFont(plainFont);
         firstNameLabel.setText("first name:");
-
-        lastNameLabel.setFont(plainFont);
-        lastNameLabel.setText("last name:");
-
-        sexLabel.setFont(plainFont);
-        sexLabel.setText("sex:");
-
-        maleSelector.setFont(plainFont);
-        maleSelector.setText("Male");
-        maleSelector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maleSelectorActionPerformed(evt);
-            }
-        });
-
-        femaleSelector.setFont(plainFont);
-        femaleSelector.setText("Female");
-        femaleSelector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                femaleSelectorActionPerformed(evt);
-            }
-        });
-
-        otherSelector.setFont(plainFont);
-        otherSelector.setText("Other");
-        otherSelector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                otherSelectorActionPerformed(evt);
-            }
-        });
-
-        workLocationLabel.setFont(plainFont);
-        workLocationLabel.setText("work location:");
-
-        deductionRateLabel.setFont(plainFont);
-        deductionRateLabel.setText("deduction rate:");
 
         firstNameTextField.setFont(plainFont);
         firstNameTextField.setText("ex. Johnathan");
@@ -190,16 +285,39 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             }
         });
 
-        lastNameTextField.setFont(plainFont);
-        lastNameTextField.setText("ex. Smith");
+        firstNameError.setFont(plainFont
+        );
+        firstNameError.setForeground(new java.awt.Color(231, 76, 60));
+        firstNameError.setText("*");
 
-        workLocationTextField.setFont(plainFont);
-        workLocationTextField.setText("ex. Mississauga");
-        workLocationTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workLocationTextFieldActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout firstNamePanelLayout = new javax.swing.GroupLayout(firstNamePanel);
+        firstNamePanel.setLayout(firstNamePanelLayout);
+        firstNamePanelLayout.setHorizontalGroup(
+            firstNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(firstNamePanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(firstNameError)
+                .addGap(18, 18, 18)
+                .addComponent(firstNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        firstNamePanelLayout.setVerticalGroup(
+            firstNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, firstNamePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(firstNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(firstNameLabel)
+                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        deductRatePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        deductionRateLabel.setFont(plainFont);
+        deductionRateLabel.setText("deduction rate:");
 
         deductionRateTextField.setFont(plainFont);
         deductionRateTextField.setText("ex. 0.01");
@@ -208,6 +326,11 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                 deductionRateTextFieldActionPerformed(evt);
             }
         });
+
+        deductionRateError.setFont(plainFont
+        );
+        deductionRateError.setForeground(new java.awt.Color(231, 76, 60));
+        deductionRateError.setText("*");
 
         hourlyWageLabel.setFont(plainFont);
         hourlyWageLabel.setText("hourly wage:");
@@ -249,6 +372,50 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         weeksPerYearError.setForeground(new java.awt.Color(231, 76, 60));
         weeksPerYearError.setText("*");
 
+        fteEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        yearlySalaryTextField.setFont(plainFont
+        );
+        yearlySalaryTextField.setText("$$$");
+        yearlySalaryTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearlySalaryTextFieldActionPerformed(evt);
+            }
+        });
+
+        yearlySalaryError.setFont(plainFont
+        );
+        yearlySalaryError.setForeground(new java.awt.Color(231, 76, 60));
+        yearlySalaryError.setText("*");
+
+        yearlySalaryLabel.setFont(plainFont
+        );
+        yearlySalaryLabel.setText("yearly salary:");
+
+        javax.swing.GroupLayout fteEmployeePanelLayout = new javax.swing.GroupLayout(fteEmployeePanel);
+        fteEmployeePanel.setLayout(fteEmployeePanelLayout);
+        fteEmployeePanelLayout.setHorizontalGroup(
+            fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEmployeePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(yearlySalaryError)
+                .addGap(18, 18, 18)
+                .addComponent(yearlySalaryLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(yearlySalaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
+        );
+        fteEmployeePanelLayout.setVerticalGroup(
+            fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEmployeePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearlySalaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearlySalaryLabel)
+                    .addComponent(yearlySalaryError))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         pteEmployeePanel.setLayer(hourlyWageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         pteEmployeePanel.setLayer(hoursPerWeekLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         pteEmployeePanel.setLayer(hourlyWageTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -258,39 +425,44 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         pteEmployeePanel.setLayer(weeksPerYearTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
         pteEmployeePanel.setLayer(weeksPerYearLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         pteEmployeePanel.setLayer(weeksPerYearError, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        pteEmployeePanel.setLayer(fteEmployeePanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout pteEmployeePanelLayout = new javax.swing.GroupLayout(pteEmployeePanel);
         pteEmployeePanel.setLayout(pteEmployeePanelLayout);
         pteEmployeePanelLayout.setHorizontalGroup(
             pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pteEmployeePanelLayout.createSequentialGroup()
                         .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hourlyWageError)
-                            .addComponent(hoursPerWeekError, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                                .addComponent(hourlyWageLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(hourlyWageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hoursPerWeekError))
+                        .addGap(14, 14, 14)
+                        .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pteEmployeePanelLayout.createSequentialGroup()
                                 .addComponent(hoursPerWeekLabel)
                                 .addGap(7, 7, 7)
-                                .addComponent(hoursPerWeekTextField))))
+                                .addComponent(hoursPerWeekTextField))
+                            .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                                .addComponent(hourlyWageLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(hourlyWageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pteEmployeePanelLayout.createSequentialGroup()
                         .addComponent(weeksPerYearError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(weeksPerYearLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(weeksPerYearTextField)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(pteEmployeePanelLayout.createSequentialGroup()
+                .addComponent(fteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pteEmployeePanelLayout.setVerticalGroup(
             pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pteEmployeePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hourlyWageError)
                     .addComponent(hourlyWageLabel)
@@ -301,80 +473,227 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                     .addComponent(hoursPerWeekLabel)
                     .addComponent(hoursPerWeekError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(weeksPerYearError, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(weeksPerYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(weeksPerYearLabel)))
+                .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(weeksPerYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weeksPerYearLabel)
+                    .addComponent(weeksPerYearError))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        typeLabel.setFont(plainFont
+        javax.swing.GroupLayout deductRatePanelLayout = new javax.swing.GroupLayout(deductRatePanel);
+        deductRatePanel.setLayout(deductRatePanelLayout);
+        deductRatePanelLayout.setHorizontalGroup(
+            deductRatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deductRatePanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(deductionRateError)
+                .addGap(18, 18, 18)
+                .addComponent(deductionRateLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(deductRatePanelLayout.createSequentialGroup()
+                .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
-        typeLabel.setText("type:");
+        deductRatePanelLayout.setVerticalGroup(
+            deductRatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deductRatePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(deductRatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deductionRateLabel)
+                    .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deductionRateError))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        pteSelector.setFont(plainFont
-        );
-        pteSelector.setText("part time employee");
-        pteSelector.addActionListener(new java.awt.event.ActionListener() {
+        fteEmployeePanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        maleSelector.setFont(plainFont);
+        maleSelector.setText("Male");
+        maleSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pteSelectorActionPerformed(evt);
+                maleSelectorActionPerformed(evt);
             }
         });
 
-        fteSelector.setFont(plainFont
-        );
-        fteSelector.setText("full time employee");
-        fteSelector.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fteSelectorActionPerformed(evt);
-            }
-        });
-
-        empNumberTextField.setFont(plainFont
-        );
-        empNumberTextField.setText("ex. 193825");
-        empNumberTextField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        empNumberTextField.setCaretColor(new java.awt.Color(28, 40, 51));
-        empNumberTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                empNumberTextFieldActionPerformed(evt);
-            }
-        });
-
-        empNumberLabel.setFont(plainFont
-        );
-        empNumberLabel.setText("employee number:");
-
-        empNumberError.setFont(plainFont
-        );
-        empNumberError.setForeground(new java.awt.Color(231, 76, 60));
-        empNumberError.setText("*");
-
-        firstNameError.setFont(plainFont
-        );
-        firstNameError.setForeground(new java.awt.Color(231, 76, 60));
-        firstNameError.setText("*");
-
-        lastNameError.setFont(plainFont
-        );
-        lastNameError.setForeground(new java.awt.Color(231, 76, 60));
-        lastNameError.setText("*");
+        sexLabel.setFont(plainFont);
+        sexLabel.setText("sex:");
 
         sexError.setFont(plainFont
         );
         sexError.setForeground(new java.awt.Color(231, 76, 60));
         sexError.setText("*");
 
+        otherSelector.setFont(plainFont);
+        otherSelector.setText("Other");
+        otherSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherSelectorActionPerformed(evt);
+            }
+        });
+
+        femaleSelector.setFont(plainFont);
+        femaleSelector.setText("Female");
+        femaleSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleSelectorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout fteEmployeePanel1Layout = new javax.swing.GroupLayout(fteEmployeePanel1);
+        fteEmployeePanel1.setLayout(fteEmployeePanel1Layout);
+        fteEmployeePanel1Layout.setHorizontalGroup(
+            fteEmployeePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEmployeePanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(sexError)
+                .addGap(18, 18, 18)
+                .addComponent(sexLabel)
+                .addGap(18, 18, 18)
+                .addComponent(femaleSelector)
+                .addGap(18, 18, 18)
+                .addComponent(maleSelector)
+                .addGap(18, 18, 18)
+                .addComponent(otherSelector)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        fteEmployeePanel1Layout.setVerticalGroup(
+            fteEmployeePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEmployeePanel1Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(fteEmployeePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sexLabel)
+                    .addComponent(femaleSelector)
+                    .addComponent(maleSelector)
+                    .addComponent(otherSelector)
+                    .addComponent(sexError))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lastNamePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        lastNameTextField.setFont(plainFont);
+        lastNameTextField.setText("ex. Smith");
+
+        lastNameError.setFont(plainFont
+        );
+        lastNameError.setForeground(new java.awt.Color(231, 76, 60));
+        lastNameError.setText("*");
+
+        lastNameLabel.setFont(plainFont);
+        lastNameLabel.setText("last name:");
+
+        javax.swing.GroupLayout lastNamePanelLayout = new javax.swing.GroupLayout(lastNamePanel);
+        lastNamePanel.setLayout(lastNamePanelLayout);
+        lastNamePanelLayout.setHorizontalGroup(
+            lastNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lastNamePanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lastNameError)
+                .addGap(18, 18, 18)
+                .addComponent(lastNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lastNameTextField)
+                .addContainerGap())
+        );
+        lastNamePanelLayout.setVerticalGroup(
+            lastNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lastNamePanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(lastNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastNameLabel)
+                    .addComponent(lastNameError))
+                .addGap(5, 5, 5))
+        );
+
+        workLocationPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        workLocationLabel.setFont(plainFont);
+        workLocationLabel.setText("work location:");
+
         workLocationError.setFont(plainFont
         );
         workLocationError.setForeground(new java.awt.Color(231, 76, 60));
         workLocationError.setText("*");
 
-        deductionRateError.setFont(plainFont
+        workLocationTextField.setFont(plainFont);
+        workLocationTextField.setText("ex. Mississauga");
+        workLocationTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workLocationTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout workLocationPanelLayout = new javax.swing.GroupLayout(workLocationPanel);
+        workLocationPanel.setLayout(workLocationPanelLayout);
+        workLocationPanelLayout.setHorizontalGroup(
+            workLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(workLocationPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(workLocationError)
+                .addGap(18, 18, 18)
+                .addComponent(workLocationLabel)
+                .addGap(18, 18, 18)
+                .addComponent(workLocationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        deductionRateError.setForeground(new java.awt.Color(231, 76, 60));
-        deductionRateError.setText("*");
+        workLocationPanelLayout.setVerticalGroup(
+            workLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(workLocationPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(workLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(workLocationLabel)
+                    .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(workLocationError))
+                .addGap(5, 5, 5))
+        );
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(fteEmployeePanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lastNamePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(workLocationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(empNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(deductRatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
+                .addGap(50, 50, 50))
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addComponent(typePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(empNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(firstNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lastNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(fteEmployeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(workLocationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(deductRatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
 
         submitButton.setBackground(new java.awt.Color(46, 204, 113));
         submitButton.setFont(plainFont
@@ -392,61 +711,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             }
         });
 
-        cancelButton.setBackground(new java.awt.Color(231, 76, 60));
-        cancelButton.setFont(plainFont
-        );
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelButton.setText("cancel");
-        cancelButton.setToolTipText("");
-        cancelButton.setBorder(null);
-        cancelButton.setBorderPainted(false);
-        cancelButton.setContentAreaFilled(false);
-        cancelButton.setOpaque(true);
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-
-        fteEmployeePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        yearlySalaryTextField.setFont(plainFont
-        );
-        yearlySalaryTextField.setText("$$$");
-
-        yearlySalaryError.setFont(plainFont
-        );
-        yearlySalaryError.setForeground(new java.awt.Color(231, 76, 60));
-        yearlySalaryError.setText("*");
-
-        yearlySalaryLabel.setFont(plainFont
-        );
-        yearlySalaryLabel.setText("yearly salary:");
-
-        javax.swing.GroupLayout fteEmployeePanelLayout = new javax.swing.GroupLayout(fteEmployeePanel);
-        fteEmployeePanel.setLayout(fteEmployeePanelLayout);
-        fteEmployeePanelLayout.setHorizontalGroup(
-            fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fteEmployeePanelLayout.createSequentialGroup()
-                .addComponent(yearlySalaryError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(yearlySalaryLabel)
-                .addGap(18, 18, 18)
-                .addComponent(yearlySalaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 63, Short.MAX_VALUE))
-        );
-        fteEmployeePanelLayout.setVerticalGroup(
-            fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fteEmployeePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(yearlySalaryError)
-                    .addGroup(fteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(yearlySalaryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(yearlySalaryLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
         addEmployeePanelLayout.setHorizontalGroup(
@@ -454,137 +718,41 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(titleEmployeeLabel))
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleEmployeeLabel)
-                            .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(workLocationError)
-                                    .addComponent(deductionRateError))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                        .addComponent(deductionRateLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(deductionRateTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                        .addComponent(workLocationLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(empNumberError)
-                                    .addComponent(sexError))
-                                .addGap(6, 6, 6)
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                        .addComponent(typeLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(pteSelector)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fteSelector))
-                                    .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addEmployeePanelLayout.createSequentialGroup()
-                                            .addComponent(empNumberLabel)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(empNumberTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                            .addComponent(sexLabel)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(femaleSelector)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(maleSelector)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(otherSelector)))))
-                            .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(firstNameError)
-                                    .addComponent(lastNameError))
-                                .addGap(6, 6, 6)
-                                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                        .addComponent(firstNameLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                                        .addComponent(lastNameLabel)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(fteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
+                        .addGap(123, 123, 123)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
+                        .addGap(100, 100, 100)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(328, 328, 328))
         );
         addEmployeePanelLayout.setVerticalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(titleEmployeeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(typeLabel)
-                    .addComponent(pteSelector)
-                    .addComponent(fteSelector))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(empNumberLabel)
-                    .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(empNumberError))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameLabel)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameError))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastNameLabel)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameError))
-                .addGap(12, 12, 12)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sexLabel)
-                    .addComponent(femaleSelector)
-                    .addComponent(maleSelector)
-                    .addComponent(otherSelector)
-                    .addComponent(sexError))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(workLocationLabel)
-                    .addComponent(workLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(workLocationError))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deductionRateLabel)
-                    .addComponent(deductionRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deductionRateError))
-                .addGap(2, 2, 2)
-                .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addEmployeePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(addEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 546, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addEmployeePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(addEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -662,11 +830,15 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private void weeksPerYearTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weeksPerYearTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_weeksPerYearTextFieldActionPerformed
+
+    private void yearlySalaryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearlySalaryTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearlySalaryTextFieldActionPerformed
     
     private void setEmpNumber() {
         int tmp = checkToInteger(empNumberTextField.getText());
         if(tmp == -1) {
-            // displayError();
+//             displayError();
         } else {
             this.empNumber = tmp;
         }
@@ -689,7 +861,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     }
     
     private void setYearlySalary() {
-        //this.yearlySalary = checkToInteger(yearlySalaryTextField.getText());
+        this.yearlySalary = checkToDouble(yearlySalaryTextField.getText());
     }
     
     private void setWeeksPerYear() {
@@ -714,6 +886,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         hourlyWageError.setVisible(false);
         hoursPerWeekError.setVisible(false);
         weeksPerYearError.setVisible(false);
+        yearlySalaryError.setVisible(false);
     }
     
     public void setValues() {
@@ -752,7 +925,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     }
     
     public PartTimeEmployee createPartTimeEmployee() {
-        System.out.println(workLocation);
         return new PartTimeEmployee(empNumber, firstName, lastName, sex, workLocation, deductionRate, hourlyWage, hoursPerWeek, weeksPerYear);
     }
     
@@ -803,13 +975,63 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             }
         } else {
             if(yearlySalary == -1) {
-                //yearlySalaryError.setVisible(true);
+                yearlySalaryError.setVisible(true);
                 b = true;
             }
         }
         return b;
     }
     
+     public boolean checkEditError() {
+        resetErrors();
+        boolean b = false;
+        if(empNumber == -1) {
+            empNumberError.setVisible(true);
+            b = true;
+        }
+        if(firstName == null) {
+            System.out.println(firstName);
+            firstNameError.setVisible(true);
+            b = true;
+        }
+        if(lastName == null) {
+            lastNameError.setVisible(true);
+            b = true;
+        }
+        if(sex == -1) {
+            sexError.setVisible(true);
+            b = true;
+        }
+        if(workLocation == null) {
+            workLocationError.setVisible(true);
+            b = true;
+        }
+        if(deductionRate == -1) {
+            deductionRateError.setVisible(true);
+            b = true;
+        }
+        if(type) {
+            if(weeksPerYear == -1) {
+                weeksPerYearError.setVisible(true);
+                b = true;
+            }
+            if(hoursPerWeek == -1) {
+                hoursPerWeekError.setVisible(true);
+                b = true;
+            }
+            if(hourlyWage == -1) {
+                hourlyWageError.setVisible(true);
+                b = true;
+            }
+        } else {
+            if(yearlySalary == -1) {
+                yearlySalaryError.setVisible(true);
+                b = true;
+            }
+        }
+        return b;
+    }
+      
     /**
      * @param args the command line arguments
      */
@@ -847,17 +1069,22 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel addEmployeePanel;
     protected javax.swing.JButton cancelButton;
+    private javax.swing.JPanel deductRatePanel;
     private javax.swing.JLabel deductionRateError;
     private javax.swing.JLabel deductionRateLabel;
     private javax.swing.JTextField deductionRateTextField;
     private javax.swing.JLabel empNumberError;
+    private javax.swing.JLabel empNumberError1;
     private javax.swing.JLabel empNumberLabel;
+    private javax.swing.JPanel empNumberPanel;
     private javax.swing.JTextField empNumberTextField;
     private javax.swing.JRadioButton femaleSelector;
     private javax.swing.JLabel firstNameError;
     private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JPanel firstNamePanel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JPanel fteEmployeePanel;
+    private javax.swing.JPanel fteEmployeePanel1;
     private javax.swing.JRadioButton fteSelector;
     private javax.swing.JLabel hourlyWageError;
     private javax.swing.JLabel hourlyWageLabel;
@@ -867,7 +1094,9 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private javax.swing.JTextField hoursPerWeekTextField;
     private javax.swing.JLabel lastNameError;
     private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JPanel lastNamePanel;
     private javax.swing.JTextField lastNameTextField;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JRadioButton maleSelector;
     private javax.swing.JRadioButton otherSelector;
     private javax.swing.JLayeredPane pteEmployeePanel;
@@ -877,11 +1106,13 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     public javax.swing.JButton submitButton;
     private javax.swing.JLabel titleEmployeeLabel;
     private javax.swing.JLabel typeLabel;
+    private javax.swing.JPanel typePanel;
     private javax.swing.JLabel weeksPerYearError;
     private javax.swing.JLabel weeksPerYearLabel;
     private javax.swing.JTextField weeksPerYearTextField;
     private javax.swing.JLabel workLocationError;
     private javax.swing.JLabel workLocationLabel;
+    private javax.swing.JPanel workLocationPanel;
     private javax.swing.JTextField workLocationTextField;
     private javax.swing.JLabel yearlySalaryError;
     private javax.swing.JLabel yearlySalaryLabel;

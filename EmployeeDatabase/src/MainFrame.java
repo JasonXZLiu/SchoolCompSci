@@ -10,21 +10,27 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.TitledBorder;
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author 529483
+/** DISCLAIMER:
+ *  to optimize the storage capacity of this program with the design, 
+ *  some frames are utilized for different functions. 
+ *  ex. AddEmployeeFrame is used to: add, edit, and display an employee 
+ *      functionality determined by passing in a boolean/integer value 
+ *      representing a certain function 
  */
 
 public class MainFrame extends javax.swing.JFrame{
+    // attributes of MainFrame
+    // global variables for used frames
     private AddEmployeeFrame addEmployeeFrame; 
     private SearchEmployeeFrame searchEmployeeFrame; 
     private DisplayEmployeeFrame displayEmployeeFrame; 
-    protected static MyHashTable hashTable = new MyHashTable(5);
+    
+    // K buckets for the hashtable -> originally hardcoded but can be editted
+    protected static int K;
+    // hashtable to store information (given K buckets in the beginning)
+    protected static MyHashTable hashTable;
+    // instantiated new font style
     private static Font headerFont = new Font("Corbel", Font.BOLD, 32);
     private static Font plainFont = new Font("Corbel", Font.PLAIN, 20);
     
@@ -32,7 +38,19 @@ public class MainFrame extends javax.swing.JFrame{
      * Creates new form MainFrame
      */
     public MainFrame() {
+        // K (number of buckets) can be changed in program -> will add on settings feature to MainFrame later
+        K = 5;
+        // instantiate hashTable with the K set buckets
+        hashTable = new MyHashTable(K);
+        // try, catch statement to catch errors thrown when importing data
+        try {                
+            hashTable.importData();
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // initializes JFrame's components
         initComponents();
+        // displays total number of employees in the database initially
         statusLabel.setText("You have " + hashTable.getSize() + " employees in the database.");
     }
 
@@ -98,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame{
         displayButton.setBackground(new java.awt.Color(86, 101, 115));
         displayButton.setFont(plainFont);
         displayButton.setForeground(new java.awt.Color(255, 255, 255));
-        displayButton.setText("display");
+        displayButton.setText("display all");
         displayButton.setToolTipText("");
         displayButton.setBorder(null);
         displayButton.setContentAreaFilled(false);
@@ -127,25 +145,25 @@ public class MainFrame extends javax.swing.JFrame{
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(titleLabel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(424, 424, 424)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(displayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(displayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,20 +172,20 @@ public class MainFrame extends javax.swing.JFrame{
                 .addComponent(titleLabel)
                 .addGap(18, 18, 18)
                 .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(displayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,27 +195,36 @@ public class MainFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // method invoked when removeButton is clicked
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        // TODO add your handling code here:
+        // instantiates the SearchEmployeeFrame (utilized here to determine which employee to remove)
+        // must find if employee is in database before removing
         searchEmployeeFrame = new SearchEmployeeFrame();
+        // SearchEmployeeFrame used for searching + removing employees 
+        // (change label to show user that this is the correct remove employee frame)
         searchEmployeeFrame.searchFrameLabel.setText("remove employee");
         searchEmployeeFrame.setVisible(true);
+        // ActionListener invoked when submit button (from searchEmployeeFrame is clicked)
         searchEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
+               // sets initial values for searchEmployeeFrame (default to show user example inputs)
                searchEmployeeFrame.setValues();
+               // check if there are errors <- error thrown if:
+               // emp number is inputted OR employee number exists or not 
                if(searchEmployeeFrame.empNumber == -1 || hashTable.removeEmployee(searchEmployeeFrame.empNumber) == null) {
                    searchEmployeeFrame.displayError();
                } else {
+                   // updates statusLabel (# of employees in database)
                    updateText();
+                   // disposes of the frame
                    searchEmployeeFrame.dispose();
                }
             }
         });
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    
+    // similar to removeButtonActionPerformed method except displays the searched employee
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
         searchEmployeeFrame = new SearchEmployeeFrame();
         searchEmployeeFrame.searchFrameLabel.setText("search employee");
         searchEmployeeFrame.setVisible(true);
@@ -215,32 +242,36 @@ public class MainFrame extends javax.swing.JFrame{
         });
     }//GEN-LAST:event_searchButtonActionPerformed
     
+    // displays the employee that was searched for
     private void displaySearchedEmployee(EmployeeInfo e) {
-        displayEmployeeFrame = new DisplayEmployeeFrame(e);
-        displayEmployeeFrame.setVisible(true);
+        addEmployeeFrame = new AddEmployeeFrame(0, e);
+        addEmployeeFrame.setVisible(true);
     }
     
+    // method invoked when displayButton is clicked 
     private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
         displayEmployeeFrame = new DisplayEmployeeFrame(hashTable);
         displayEmployeeFrame.setVisible(true);
         displayEmployeeFrame.editButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
-                int blah = displayEmployeeFrame.checkForSelected();
-                if(blah != -1) {
-                    editEmployee(blah);
+                int check = displayEmployeeFrame.checkForSelected();
+                if(check != -1) {
+                    editEmployee(check);
                     displayEmployeeFrame.dispose();
                 }
             }
         });
     }//GEN-LAST:event_displayButtonActionPerformed
 
+    // method invoked when addButton is clicked 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-        addEmployeeFrame = new AddEmployeeFrame(false, null);
+        // passed in parameter (1) represents the adding employee functionality
+        addEmployeeFrame = new AddEmployeeFrame(1, null);
         addEmployeeFrame.setVisible(true);
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
+                // if no errors, add employee to database
                 if(!addEmployeeFrame.checkError()) {
                     addToDatabase();
                     updateText();
@@ -252,11 +283,15 @@ public class MainFrame extends javax.swing.JFrame{
         });
     }//GEN-LAST:event_addButtonActionPerformed
 
+    // updates the statusLabel (displays correct number of employees after a ceratin action)
     private void updateText() {
         statusLabel.setText("You have " + hashTable.getSize() + " employees in the database.");
     }
     
+    // adds new EmployeeInfo to hashTable
     private void addToDatabase() {
+        // check if employee is part time or full time
+        // (type is a boolean value. if true, employee is part time. else, full time)
         if(addEmployeeFrame.type) {
             PartTimeEmployee employee = addEmployeeFrame.createPartTimeEmployee();
             hashTable.addEmployee(employee);
@@ -266,14 +301,21 @@ public class MainFrame extends javax.swing.JFrame{
         }
     }
 
+    // removes employee from database with employee number empNum
+     private void removeEmployee(int empNum) {
+        hashTable.removeEmployee(empNum);
+    }
+    
+    // edits employee by instantiating an AddEmployeeFrame (with edit functionality)
     public void editEmployee(int i) {
         EmployeeInfo e = hashTable.searchByEmployeeNumber(i);
-        addEmployeeFrame = new AddEmployeeFrame(true, e);
+        addEmployeeFrame = new AddEmployeeFrame(2, e);
         addEmployeeFrame.setVisible(true);
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
-                if(!addEmployeeFrame.checkError()) {
+                if(!addEmployeeFrame.checkEditError()) {
+                    removeEmployee(addEmployeeFrame.empNumber);
                     addToDatabase();
                     updateText();
                     addEmployeeFrame.dispose();
@@ -293,6 +335,9 @@ public class MainFrame extends javax.swing.JFrame{
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        // try catch statement used to catch potential exceptions thrown when adding a default layout 
+        // Nimbus is one of NetBeans default layout
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -314,35 +359,20 @@ public class MainFrame extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {                
-                    hashTable.importData();
-                } catch (IOException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-//                try {
-//                    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-//                      if ("Nimbus".equals(info.getName())) {
-//                        UIManager.put("nimbusBase",new Color(0xBB,0xC3,0xFF));
-//                        UIManager.put("TitledBorder.position",TitledBorder.CENTER);
-//                        UIManager.put("nimbusBlueGrey",new Color(0xD1,0xD1,0xD1));
-//                        UIManager.put("control",new Color(0xFA,0xFA,0xFA));
-//                        UIManager.put("Button.defaultButtonFollowsFocus",Boolean.TRUE);
-//                        UIManager.setLookAndFeel(info.getClassName());
-//                        break;
-//                      }
-//                    }
-//                  }
-//                 catch (Exception e) {
-//                }
+                // instantiate MainFrame
                 final MainFrame mainFrame = new MainFrame();
+                // displays mainFrame
+                mainFrame.setVisible(true);
+                // stops frame from closing before data is exported into csv file
                 mainFrame.setDefaultCloseOperation(MainFrame.DO_NOTHING_ON_CLOSE);
+                // method invoked when mainFrame is attempted to be closed
                 mainFrame.addWindowListener( new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent we) {
+                        // if exporting data works (returns true), can dispose of mainFrame
                         if(hashTable.exportData()) mainFrame.dispose();
                     }
                 } );
-                mainFrame.setVisible(true);
             }
         });
     }
