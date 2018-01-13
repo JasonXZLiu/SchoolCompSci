@@ -73,5 +73,21 @@ A table of all the employees within the employee database will be listed. By cli
 
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/editFrame.PNG "Edit Frame")
 
+## Data Stored
+EmployeeDatabase stores data into a comma-separated values file (which can be opened in an excel file). This makes updating, importing, and exporting the data really easy.  
+
+Example: 
+```
+Type,Employee Number,First Name,LastName,Sex,Work Location,Deduction Rate,Hourly Wage,Hours Per Week,Weeks Per Year, Yearly Salary
+F,5,Minnie,Mouse,F,California,0.01,,,,45.0,45.0,44.55,
+F,1,Duffy,Duck,M,San Francisco,0.0,,,,1000000.0,1000000.0,1000000.0,
+P,6,Jimmy,Cricket,M,Anaheim,0.3,30.0,20.0,40.0,,24000.0,16800.0,,
+P,2,Donald,Duck,M,Toronto,0.05,30.0,20.0,40.0,,24000.0,22800.0,,
+F,7,Pluto,Dog,M,Toronto,0.0,,,,100000.0,100000.0,100000.0,
+F,3,Winnie,Pooh,M,New York,0.1,,,,30.0,30.0,27.0,
+F,4,Mickey,Mouse,M,San Francisco,0.25,,,,300.0,300.0,225.0,
+```
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/data.PNG "Data")
+
 ## Error Reporting
 Issues can be reported [here](https://github.com/JasonXZLiu/SchoolCompSci/issues).
