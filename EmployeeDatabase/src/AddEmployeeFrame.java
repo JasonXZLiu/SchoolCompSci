@@ -38,17 +38,18 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         fteEmployeePanel.setVisible(false);
         resetErrors();
         if(edit == 2) {
-            // initializes edit components
-            initEdit(e);
+            titleEmployeeLabel.setText("edit employee"); 
+            initComp(e);
         } else if (edit == 0) {
-            initEdit(e);
+            titleEmployeeLabel.setText("display employee"); 
+            initComp(e);
             submitButton.setVisible(false);
+            cancelButton.setText("exit");
         }
     }
     
     // sets TextField values to the related employee's initial values
-    private void initEdit(EmployeeInfo e) {
-        titleEmployeeLabel.setText("edit employee"); 
+    private void initComp(EmployeeInfo e) {
         String[] tmp = e.toString().split(",");
                 empNumberTextField.setText(tmp[1]);
         firstNameTextField.setText(tmp[2]);
