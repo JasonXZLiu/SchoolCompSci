@@ -51,19 +51,25 @@ Example: Full time employee
 
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/addFTE.png "Add Full Time Employee Frame")
 
-After filling in the textfields with the relavant information and clicking the __submit button__, users can add a new employee to the database. If the user decides not to add an employee, the user can click the __cancel button__ and will close the frame. Errors (shown through the red * beside each label) will be presented if the input is incorrect or there already exists an employee in the database with the same employee number. 
+After filling in the textfields with the relavant information and clicking the __submit button__, users can add a new employee to the database. If the user decides not to add an employee, the user can click the __cancel button__ and will close the frame. Errors (shown through the red * beside each label) will be presented if the input is incorrect or there already exists an employee in the database with the same employee number. The status text on the menu will be updated after this action.
 
 ## Searching
+Clicking the __search__ button on the menu frame will show this:
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/searchFrame.png "Search Frame")
 
+By inputting an already existing employee number into the text field and clicking the __submit button__, a new frame with the attributes of that employee will be shown. If the user decides not to add an employee, the user can click the __cancel button__ and will close the frame. If the employee number entered does not exist, an error will be thrown and shown.
+
 ## Removing
+Clicking the __search__ button on the menu frame will show this:
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/removeFrame.png "Remove Frame")
 
-## Displaying
-to be updated
+By inputting an already existing employee number into the text field and clicking the __submit button__, the user can delete the employee with the entered employee number. If the user decides not to remove an employee, the user can click the __cancel button__ and will close the frame. If the employee number entered does not exist, an error will be thrown and shown. The status text on the menu will be updated after this action.
 
-## Editting
-to be updated
+## Displaying
+Clicking the __display__ button on the menu frame will show this:
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/displayFrame.png "Display Frame")
+
+A table of all the employees within the employee database will be listed. By clicking on one row and clicking on the __edit button__, the user will be brought to a new frame where they could enter and edit the employee's information (similar to the __adding employee frame__). If the user tries to edit an employee without selecting one, an error message will be displayed.
 
 ## Error Reporting
-to be updated
+Issues can be reported [here](https://github.com/JasonXZLiu/SchoolCompSci/issues).
