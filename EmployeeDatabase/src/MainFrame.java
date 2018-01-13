@@ -272,7 +272,7 @@ public class MainFrame extends javax.swing.JFrame{
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
                 // if no errors, add employee to database
-                if(!addEmployeeFrame.checkError()) {
+                if(!addEmployeeFrame.checkError() && hashTable.search(addEmployeeFrame.empNumber) == -1) {
                     addToDatabase();
                     updateText();
                     addEmployeeFrame.dispose();

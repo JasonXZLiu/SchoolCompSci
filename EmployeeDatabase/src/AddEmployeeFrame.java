@@ -14,6 +14,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     protected int[] error = {0, -1};  
     
     // attributes for Employee
+    protected boolean selected = false;
     protected boolean type = false;  
     protected int empNumber;
     protected String firstName;
@@ -51,7 +52,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     // sets TextField values to the related employee's initial values
     private void initComp(EmployeeInfo e) {
         String[] tmp = e.toString().split(",");
-                empNumberTextField.setText(tmp[1]);
+        empNumberTextField.setText(tmp[1]);
         firstNameTextField.setText(tmp[2]);
         lastNameTextField.setText(tmp[3]);
         if(tmp[4].equals("0")) {
@@ -95,7 +96,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         empNumberTextField = new javax.swing.JTextField();
         empNumberError = new javax.swing.JLabel();
         typePanel = new javax.swing.JPanel();
-        empNumberError1 = new javax.swing.JLabel();
+        typeError = new javax.swing.JLabel();
         pteSelector = new javax.swing.JRadioButton();
         typeLabel = new javax.swing.JLabel();
         fteSelector = new javax.swing.JRadioButton();
@@ -138,7 +139,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         submitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(546, 620));
         setResizable(false);
         setSize(new java.awt.Dimension(546, 620));
 
@@ -209,10 +209,10 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         typePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        empNumberError1.setFont(plainFont
+        typeError.setFont(plainFont
         );
-        empNumberError1.setForeground(new java.awt.Color(231, 76, 60));
-        empNumberError1.setText("*");
+        typeError.setForeground(new java.awt.Color(231, 76, 60));
+        typeError.setText("*");
 
         pteSelector.setFont(plainFont
         );
@@ -242,7 +242,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             typePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(typePanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(empNumberError1)
+                .addComponent(typeError)
                 .addGap(15, 15, 15)
                 .addComponent(typeLabel)
                 .addGap(18, 18, 18)
@@ -259,7 +259,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                     .addComponent(fteSelector)
                     .addComponent(pteSelector)
                     .addComponent(typeLabel)
-                    .addComponent(empNumberError1))
+                    .addComponent(typeError))
                 .addGap(5, 5, 5))
         );
 
@@ -620,11 +620,9 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                     .addComponent(typePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(firstNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(empNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(deductRatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deductRatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pteEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100))
+                .addGap(20, 20, 20))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,7 +672,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(301, 301, 301))
+                .addGap(0, 0, 0))
         );
         addEmployeePanelLayout.setVerticalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +692,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addEmployeePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(addEmployeePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,12 +706,13 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
     // dispose of JFrame if cancelButton clicked
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
         super.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    // method invoked when fte is selected    
     private void fteSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fteSelectorActionPerformed
-        // TODO add your handling code here:
+        // displays the fteEmployeePanel (fte attributes) + deselects pteSelector
+        this.selected = true;
         this.type = false;
         fteEmployeePanel.setVisible(true);
         pteEmployeePanel.setVisible(false);
@@ -721,8 +720,10 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         pteSelector.setSelected(false);
     }//GEN-LAST:event_fteSelectorActionPerformed
 
+    // method invoked when pte is selected    
     private void pteSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pteSelectorActionPerformed
-        // TODO add your handling code here:
+        // displays the pteEmployeePanel (pte attributes) + deselects fteSelector
+        this.selected = true;
         this.type = true;
         pteEmployeePanel.setVisible(true);
         pteSelector.setSelected(true);
@@ -730,69 +731,78 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         fteEmployeePanel.setVisible(false);
     }//GEN-LAST:event_pteSelectorActionPerformed
 
+    // method invoked when other sex is selected
     private void otherSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherSelectorActionPerformed
-        // TODO add your handling code here:
         this.sex = 2;
         femaleSelector.setSelected(false);
         maleSelector.setSelected(false);
     }//GEN-LAST:event_otherSelectorActionPerformed
 
+    // method invoked when female sex is selected
     private void femaleSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleSelectorActionPerformed
-        // TODO add your handling code here:
         this.sex = 1;
         otherSelector.setSelected(false);
         maleSelector.setSelected(false);
     }//GEN-LAST:event_femaleSelectorActionPerformed
 
+    // method invoked when male sex is selected
     private void maleSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleSelectorActionPerformed
-        // TODO add your handling code here:
         this.sex = 0;
         otherSelector.setSelected(false);
         femaleSelector.setSelected(false);
     }//GEN-LAST:event_maleSelectorActionPerformed
     
+    // sets employee number if employee number is an integer
     private void setEmpNumber() {
         int tmp = checkToInteger(empNumberTextField.getText());
-        if(tmp == -1) {
-//             displayError();
-        } else {
+        if(tmp != -1) {
             this.empNumber = tmp;
         }
     }
     
+    // sets firstName attribute with String in textfield
     private void setFirstName() {
         this.firstName = firstNameTextField.getText();
     }
     
+    // sets lastName attribute with String in textfield
     private void setLastName() {
         this.lastName = lastNameTextField.getText();
     }
     
+    // sets workLocation attribute with String in textfield
     private void setWorkLocation() {
         this.workLocation = workLocationTextField.getText();
     }
     
+    // sets deductionRate attribute with double in textfield
     private void setDeductRate() {
         this.deductionRate = checkToDouble(deductionRateTextField.getText());
     }
     
+    // sets yearlySalary attribute with double in textfield
     private void setYearlySalary() {
         this.yearlySalary = checkToDouble(yearlySalaryTextField.getText());
     }
     
+    // sets weeksPerYear attribute with double in textfield
     private void setWeeksPerYear() {
-        this.weeksPerYear = checkToInteger(weeksPerYearTextField.getText());
+        this.weeksPerYear = checkToDouble(weeksPerYearTextField.getText());
     }
     
+    // sets hoursPerWeek attribute with double in textfield
     private void setHoursPerWeek() {
-        this.hoursPerWeek = checkToInteger(hoursPerWeekTextField.getText());
+        this.hoursPerWeek = checkToDouble(hoursPerWeekTextField.getText());
     }
     
+    // sets hourlyWage attribute with double in textfield
     private void setHourlyWage() {
-        this.hourlyWage = checkToInteger(hourlyWageTextField.getText());
+        this.hourlyWage = checkToDouble(hourlyWageTextField.getText());
     }
     
+    // resets the errors to not show
     private void resetErrors() {
+        typeError.setVisible(false);
         empNumberError.setVisible(false);
         firstNameError.setVisible(false);
         lastNameError.setVisible(false);
@@ -805,6 +815,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         yearlySalaryError.setVisible(false);
     }
     
+    // sets values from textfields
     public void setValues() {
         setEmpNumber();
         setFirstName();
@@ -851,6 +862,10 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     public boolean checkError() {
         resetErrors();
         boolean b = false;
+        if(!selected) {
+            typeError.setVisible(true);
+            b = true;
+        }
         if(error[1] != -1 || empNumber == -1) {
             empNumberError.setVisible(true);
             b = true;
@@ -901,6 +916,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
      public boolean checkEditError() {
         resetErrors();
         boolean b = false;
+        if(type )
         if(empNumber == -1) {
             empNumberError.setVisible(true);
             b = true;
@@ -990,7 +1006,6 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private javax.swing.JLabel deductionRateLabel;
     private javax.swing.JTextField deductionRateTextField;
     private javax.swing.JLabel empNumberError;
-    private javax.swing.JLabel empNumberError1;
     private javax.swing.JLabel empNumberLabel;
     private javax.swing.JPanel empNumberPanel;
     private javax.swing.JTextField empNumberTextField;
@@ -1021,6 +1036,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private javax.swing.JLabel sexLabel;
     public javax.swing.JButton submitButton;
     private javax.swing.JLabel titleEmployeeLabel;
+    private javax.swing.JLabel typeError;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JPanel typePanel;
     private javax.swing.JLabel weeksPerYearError;
