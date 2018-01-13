@@ -71,5 +71,7 @@ Clicking the __display__ button on the menu frame will show this:
 
 A table of all the employees within the employee database will be listed. By clicking on one row and clicking on the __edit button__, the user will be brought to a new frame where they could enter and edit the employee's information (similar to the __adding employee frame__). If the user tries to edit an employee without selecting one, an error message will be displayed.
 
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/editFrame.PNG "Edit Frame")
+
 ## Error Reporting
 Issues can be reported [here](https://github.com/JasonXZLiu/SchoolCompSci/issues).
