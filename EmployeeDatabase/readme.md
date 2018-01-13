@@ -73,5 +73,11 @@ A table of all the employees within the employee database will be listed. By cli
 
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/editFrame.PNG "Edit Frame")
 
+## Data Stored
+EmployeeDatabase stores data into a comma-separated values file (which can be opened in an excel file). This makes updating, importing, and exporting the data really easy.  
+
+Example: 
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/data.PNG "Data")
+
 ## Error Reporting
 Issues can be reported [here](https://github.com/JasonXZLiu/SchoolCompSci/issues).
