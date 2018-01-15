@@ -1,10 +1,1 @@
 Type,Employee Number,First Name,LastName,Sex,Work Location,Deduction Rate,Hourly Wage,Hours Per Week,Weeks Per Year, Yearly Salary
-F,5,Minnie,Mouse,F,California,0.01,,,,45.0,45.0,44.55,
-F,1,Duffy,Duck,M,San Francisco,0.0,,,,1000000.0,1000000.0,1000000.0,
-P,6,Jimmy,Cricket,M,Anaheim,0.3,30.0,20.0,40.0,,24000.0,16800.0,,
-P,2,Donald,Duck,M,Toronto,0.05,30.0,20.0,40.0,,24000.0,22800.0,,
-F,7,Pluto,Dog,M,Toronto,0.0,,,,100000.0,100000.0,100000.0,
-F,3,Winnie,Pooh,M,New York,0.1,,,,30.0,30.0,27.0,
-F,4,Mickey,Mouse,M,San Francisco,0.25,,,,300.0,300.0,225.0,
-P,4,Johnathan,Smith,M,Mississauga,0.01,5.0,6.0,7.0,,210.0,207.9,,
-P,4,Jon,Snow,M,adsf,45.0,56.0,5.0,5.0,,1400.0,-61600.0,,

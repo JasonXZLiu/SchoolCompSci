@@ -188,9 +188,9 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         empNumberPanelLayout.setHorizontalGroup(
             empNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(empNumberPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(empNumberError)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(empNumberLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(empNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,7 +243,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             .addGroup(typePanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(typeError)
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addComponent(typeLabel)
                 .addGap(18, 18, 18)
                 .addComponent(pteSelector)
@@ -566,7 +566,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
                         .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hourlyWageError)
                             .addComponent(hoursPerWeekError))
-                        .addGap(14, 14, 14)
+                        .addGap(18, 18, 18)
                         .addGroup(pteEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pteEmployeePanelLayout.createSequentialGroup()
                                 .addComponent(hoursPerWeekLabel)
@@ -866,7 +866,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             typeError.setVisible(true);
             b = true;
         }
-        if(error[1] != -1 || empNumber == -1) {
+        if(error[1] != -1 || empNumber == -1 || (empNumber < 0)) {
             empNumberError.setVisible(true);
             b = true;
         }
@@ -887,76 +887,25 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             workLocationError.setVisible(true);
             b = true;
         }
-        if(deductionRate == -1) {
+        if(deductionRate == -1 || !(deductionRate < 1 && deductionRate >= 0)) {
             deductionRateError.setVisible(true);
             b = true;
         }
         if(type) {
-            if(weeksPerYear == -1) {
+            if(weeksPerYear == -1 || (weeksPerYear > 52 || weeksPerYear < 0)) {
                 weeksPerYearError.setVisible(true);
                 b = true;
             }
-            if(hoursPerWeek == -1) {
+            if(hoursPerWeek == -1 || (hoursPerWeek > 168 || hoursPerWeek < 0)) {
                 hoursPerWeekError.setVisible(true);
                 b = true;
             }
-            if(hourlyWage == -1) {
+            if(hourlyWage == -1 || hourlyWage < 0) {
                 hourlyWageError.setVisible(true);
                 b = true;
             }
         } else {
-            if(yearlySalary == -1) {
-                yearlySalaryError.setVisible(true);
-                b = true;
-            }
-        }
-        return b;
-    }
-    
-     public boolean checkEditError() {
-        resetErrors();
-        boolean b = false;
-        if(type )
-        if(empNumber == -1) {
-            empNumberError.setVisible(true);
-            b = true;
-        }
-        if(firstName == null) {
-            System.out.println(firstName);
-            firstNameError.setVisible(true);
-            b = true;
-        }
-        if(lastName == null) {
-            lastNameError.setVisible(true);
-            b = true;
-        }
-        if(sex == -1) {
-            sexError.setVisible(true);
-            b = true;
-        }
-        if(workLocation == null) {
-            workLocationError.setVisible(true);
-            b = true;
-        }
-        if(deductionRate == -1) {
-            deductionRateError.setVisible(true);
-            b = true;
-        }
-        if(type) {
-            if(weeksPerYear == -1) {
-                weeksPerYearError.setVisible(true);
-                b = true;
-            }
-            if(hoursPerWeek == -1) {
-                hoursPerWeekError.setVisible(true);
-                b = true;
-            }
-            if(hourlyWage == -1) {
-                hourlyWageError.setVisible(true);
-                b = true;
-            }
-        } else {
-            if(yearlySalary == -1) {
+            if(yearlySalary == -1 || yearlySalary < 0) {
                 yearlySalaryError.setVisible(true);
                 b = true;
             }

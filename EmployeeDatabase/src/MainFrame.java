@@ -314,7 +314,7 @@ public class MainFrame extends javax.swing.JFrame{
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
-                if(!addEmployeeFrame.checkEditError()) {
+                if(!addEmployeeFrame.checkError()) {
                     removeEmployee(addEmployeeFrame.empNumber);
                     addToDatabase();
                     updateText();
