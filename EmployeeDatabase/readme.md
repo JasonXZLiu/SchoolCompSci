@@ -41,7 +41,20 @@ Clicking the __add__ button on the menu frame will show this:
 
 _Example inputs are shown already._
 
-First, click on the appropriate type of employee (one of the two selectors at the top). This will display the rest of the attributes that needs to be filled in. 
+First, click on the appropriate type of employee (one of the two selectors at the top). This will display the rest of the attributes that needs to be filled in.
+
+__Input Restrictions:__ - all fields are required (depending on the type of employee) and will throw an error if one or more field is not completed
+* Employee Type - one of the choices (Part Time or Full Time) must be selected
+* Employee Number - must be a positive integer (leading 0's have no effect)
+* First Name - must be a string 
+* Last Name - must be a string 
+* Gender - one of the choices (Male, Female, or Other) must be selected
+* Work Location - must be a string
+* Deduction Rate - must be a positive number between 0 and 1 (can hav decimals)
+* Hourly Wage - must be bigger than 0
+* Hours per Week - must be bigger than 0 and less than 168 (maximum 24 hours x 7 days)
+* Weeks per Year - must be bigger than 0 and less than 52 (maximum 52 days in a year)
+* Yearly Salary - must be bigger than 0
 
 Example: Part time employee 
 
@@ -89,5 +102,5 @@ F,4,Mickey,Mouse,M,San Francisco,0.25,,,,300.0,300.0,225.0,
 ```
 ![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/data.PNG "Data")
 
-## Error Reporting
+## Issue Reporting
 Issues can be reported [here](https://github.com/JasonXZLiu/SchoolCompSci/issues).
