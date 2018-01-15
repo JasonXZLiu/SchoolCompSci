@@ -43,6 +43,14 @@ _Example inputs are shown already._
 
 First, click on the appropriate type of employee (one of the two selectors at the top). This will display the rest of the attributes that needs to be filled in.
 
+Example: Part time employee 
+
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/addPTE.png "Add Part Time Employee Frame")
+
+Example: Full time employee
+
+![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/addFTE.png "Add Full Time Employee Frame")
+
 __Input Restrictions:__ - all fields are required (depending on the type of employee) and will throw an error if one or more field is not completed
 * Employee Type - one of the choices (Part Time or Full Time) must be selected
 * Employee Number - must be a positive integer (leading 0's have no effect)
@@ -55,14 +63,6 @@ __Input Restrictions:__ - all fields are required (depending on the type of empl
 * Hours per Week - must be bigger than 0 and less than 168 (maximum 24 hours x 7 days)
 * Weeks per Year - must be bigger than 0 and less than 52 (maximum 52 days in a year)
 * Yearly Salary - must be bigger than 0
-
-Example: Part time employee 
-
-![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/addPTE.png "Add Part Time Employee Frame")
-
-Example: Full time employee
-
-![alt text](https://github.com/JasonXZLiu/SchoolCompSci/blob/master/EmployeeDatabase/files/addFTE.png "Add Full Time Employee Frame")
 
 After filling in the textfields with the relavant information and clicking the __submit button__, users can add a new employee to the database. If the user decides not to add an employee, the user can click the __cancel button__ and will close the frame. Errors (shown through the red * beside each label) will be presented if the input is incorrect or there already exists an employee in the database with the same employee number. The status text on the menu will be updated after this action.
 
