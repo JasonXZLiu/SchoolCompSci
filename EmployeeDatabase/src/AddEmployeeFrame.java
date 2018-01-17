@@ -68,9 +68,9 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
             type = tmp[0].equals("P");
             pteEmployeePanel.setVisible(true);
             pteSelector.setSelected(true);
-            hourlyWageTextField.setText(tmp[6]);
-            hoursPerWeekTextField.setText(tmp[7]);
-            weeksPerYearTextField.setText(tmp[8]);
+            hourlyWageTextField.setText(tmp[7]);
+            hoursPerWeekTextField.setText(tmp[8]);
+            weeksPerYearTextField.setText(tmp[9]);
         } else {
             fteEmployeePanel.setVisible(true);
             fteSelector.setSelected(true);
@@ -814,12 +814,25 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         weeksPerYearError.setVisible(false);
         yearlySalaryError.setVisible(false);
     }
+   
+     private void setSex() {
+        if(maleSelector.isSelected()) this.sex = 0;
+        else if(femaleSelector.isSelected()) this.sex = 1;
+        else if(otherSelector.isSelected()) this.sex = 2;
+    }
+     
+     private void setType() {
+        if(pteSelector.isSelected()) this.type = false;
+        else if(fteSelector.isSelected()) this.type = true;
+    }
     
     // sets values from textfields
     public void setValues() {
+        setType();
         setEmpNumber();
         setFirstName();
         setLastName();
+        setSex();
         setWorkLocation();
         setDeductRate();
         setYearlySalary();

@@ -211,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame{
                searchEmployeeFrame.setValues();
                // check if there are errors <- error thrown if:
                // emp number is inputted OR employee number exists or not 
-               if(searchEmployeeFrame.empNumber == -1 || hashTable.removeEmployee(searchEmployeeFrame.empNumber) == null) {
+               if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == null) {
                    searchEmployeeFrame.displayError();
                } else {
                    // updates statusLabel (# of employees in database)
