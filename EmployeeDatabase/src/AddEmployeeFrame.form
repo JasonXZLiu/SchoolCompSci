@@ -741,7 +741,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="plainFont&#xd;&#xa;        " type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="$$$"/>
+                    <Property name="text" type="java.lang.String" value="ex. 3"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="yearlySalaryError">
@@ -852,7 +852,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="plainFont" type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="$$$"/>
+                    <Property name="text" type="java.lang.String" value="ex. 3"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="hoursPerWeekTextField">
@@ -860,8 +860,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="plainFont" type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="$$$"/>
+                    <Property name="text" type="java.lang.String" value="ex. 3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hoursPerWeekTextFieldActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="hourlyWageError">
                   <Properties>
@@ -890,8 +893,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="plainFont" type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="$$$"/>
+                    <Property name="text" type="java.lang.String" value="ex. 3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="weeksPerYearTextFieldActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="weeksPerYearLabel">
                   <Properties>

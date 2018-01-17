@@ -234,19 +234,12 @@ public class MainFrame extends javax.swing.JFrame{
                 if(searchEmployeeFrame.empNumber == -1 || hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber) == null) {
                    searchEmployeeFrame.displayError();
                } else {
-                   EmployeeInfo employee = hashTable.searchByEmployeeNumber(searchEmployeeFrame.empNumber);
-                   displaySearchedEmployee(employee);
+                   editEmployee(searchEmployeeFrame.empNumber);
                    searchEmployeeFrame.dispose();
                }
             }
         });
     }//GEN-LAST:event_searchButtonActionPerformed
-    
-    // displays the employee that was searched for
-    private void displaySearchedEmployee(EmployeeInfo e) {
-        addEmployeeFrame = new AddEmployeeFrame(0, e);
-        addEmployeeFrame.setVisible(true);
-    }
     
     // method invoked when displayButton is clicked 
     private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
@@ -315,12 +308,12 @@ public class MainFrame extends javax.swing.JFrame{
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
                 if(!addEmployeeFrame.checkError()) {
-                    removeEmployee(addEmployeeFrame.empNumber);
+                    removeEmployee(addEmployeeFrame.oldEmpNumber);
                     addToDatabase();
                     updateText();
                     addEmployeeFrame.dispose();
                 } else {
-                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
+                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.oldEmpNumber);
                 }
             }
         });

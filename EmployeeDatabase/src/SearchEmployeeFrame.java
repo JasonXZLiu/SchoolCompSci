@@ -162,7 +162,8 @@ public class SearchEmployeeFrame extends javax.swing.JFrame {
 
     public void setValues() {
         errorNumber = searchTextField.getText();
-        this.empNumber = checkToInteger(searchTextField.getText());
+        int check = checkToInteger(searchTextField.getText());
+        if(check > 0) this.empNumber = check;
     }
     
     private int checkToInteger(String str) {   

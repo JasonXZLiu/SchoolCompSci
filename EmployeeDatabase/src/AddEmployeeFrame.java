@@ -14,6 +14,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     protected int[] error = {0, -1};  
     
     // attributes for Employee
+    protected int oldEmpNumber;
     protected boolean selected = false;
     protected boolean type = false;  
     protected int empNumber;
@@ -40,6 +41,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         resetErrors();
         if(edit == 2) {
             titleEmployeeLabel.setText("edit employee"); 
+            oldEmpNumber = e.getEmpNumber();
             initComp(e);
         } else if (edit == 0) {
             titleEmployeeLabel.setText("display employee"); 
@@ -480,7 +482,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
 
         yearlySalaryTextField.setFont(plainFont
         );
-        yearlySalaryTextField.setText("$$$");
+        yearlySalaryTextField.setText("ex. 3");
 
         yearlySalaryError.setFont(plainFont
         );
@@ -522,10 +524,15 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         hoursPerWeekLabel.setText("hours per week: ");
 
         hourlyWageTextField.setFont(plainFont);
-        hourlyWageTextField.setText("$$$");
+        hourlyWageTextField.setText("ex. 3");
 
         hoursPerWeekTextField.setFont(plainFont);
-        hoursPerWeekTextField.setText("$$$");
+        hoursPerWeekTextField.setText("ex. 3");
+        hoursPerWeekTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hoursPerWeekTextFieldActionPerformed(evt);
+            }
+        });
 
         hourlyWageError.setFont(plainFont);
         hourlyWageError.setForeground(new java.awt.Color(231, 76, 60));
@@ -536,7 +543,12 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         hoursPerWeekError.setText("*");
 
         weeksPerYearTextField.setFont(plainFont);
-        weeksPerYearTextField.setText("$$$");
+        weeksPerYearTextField.setText("ex. 3");
+        weeksPerYearTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                weeksPerYearTextFieldActionPerformed(evt);
+            }
+        });
 
         weeksPerYearLabel.setFont(plainFont);
         weeksPerYearLabel.setText("weeks per year:");
@@ -751,6 +763,14 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         otherSelector.setSelected(false);
         femaleSelector.setSelected(false);
     }//GEN-LAST:event_maleSelectorActionPerformed
+
+    private void hoursPerWeekTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoursPerWeekTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hoursPerWeekTextFieldActionPerformed
+
+    private void weeksPerYearTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weeksPerYearTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_weeksPerYearTextFieldActionPerformed
     
     // sets employee number if employee number is an integer
     private void setEmpNumber() {
@@ -822,8 +842,8 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     }
      
      private void setType() {
-        if(pteSelector.isSelected()) this.type = false;
-        else if(fteSelector.isSelected()) this.type = true;
+        if(pteSelector.isSelected()) this.type = true;
+        else if(fteSelector.isSelected()) this.type = false;
     }
     
     // sets values from textfields
@@ -875,7 +895,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     public boolean checkError() {
         resetErrors();
         boolean b = false;
-        if(!selected) {
+        if(!pteSelector.isSelected() && !fteSelector.isSelected()) {
             typeError.setVisible(true);
             b = true;
         }
