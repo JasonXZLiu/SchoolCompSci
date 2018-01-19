@@ -1,2 +1,3 @@
 Type,Employee Number,First Name,LastName,Sex,Work Location,Deduction Rate,Hourly Wage,Hours Per Week,Weeks Per Year, Yearly Salary
-F,6,john,smith,O,toronto,0.01,,,,3.0,3.0,2.9699999999999998,
+F,10,Bobby,coolkid,M,toronot,0.45,,,,3582.0,3582.0,1970.1000000000001,
+P,6,tom,jim,O,canada,0.45,5.0,98.0,9.0,,4410.0,2425.5,,

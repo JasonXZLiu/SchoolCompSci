@@ -215,6 +215,7 @@ public class MainFrame extends javax.swing.JFrame{
                    searchEmployeeFrame.displayError();
                } else {
                    // updates statusLabel (# of employees in database)
+                   removeEmployee(searchEmployeeFrame.empNumber);
                    updateText();
                    // disposes of the frame
                    searchEmployeeFrame.dispose();
@@ -307,14 +308,16 @@ public class MainFrame extends javax.swing.JFrame{
         addEmployeeFrame.submitButton.addActionListener(new ActionListener() {
             @Override public void actionPerformed (ActionEvent e) {
                 addEmployeeFrame.setValues();
+                if(addEmployeeFrame.oldEmpNumber == addEmployeeFrame.empNumber) addEmployeeFrame.error[1] = -1;                
+                else {
+                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.empNumber);
+                }
                 if(!addEmployeeFrame.checkError()) {
                     removeEmployee(addEmployeeFrame.oldEmpNumber);
                     addToDatabase();
                     updateText();
                     addEmployeeFrame.dispose();
-                } else {
-                    addEmployeeFrame.error[1] = hashTable.search(addEmployeeFrame.oldEmpNumber);
-                }
+                } 
             }
         });
     }
