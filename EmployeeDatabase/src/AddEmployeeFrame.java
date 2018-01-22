@@ -36,6 +36,8 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     public AddEmployeeFrame(int edit, EmployeeInfo e) {
         // initializes AddEmployeeFrame's components
         initComponents();
+        errorMsgLabel.setText("");
+        errorMsgLabel.setVisible(false);
         pteEmployeePanel.setVisible(false);
         fteEmployeePanel.setVisible(false);
         resetErrors();
@@ -89,6 +91,7 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        errorMsgLabel1 = new javax.swing.JLabel();
         addEmployeePanel = new javax.swing.JPanel();
         titleEmployeeLabel = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
@@ -139,6 +142,10 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         weeksPerYearLabel = new javax.swing.JLabel();
         weeksPerYearError = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
+        errorMsgLabel = new javax.swing.JLabel();
+
+        errorMsgLabel1.setFont(plainFont);
+        errorMsgLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -669,35 +676,41 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         submitButton.setContentAreaFilled(false);
         submitButton.setOpaque(true);
 
+        errorMsgLabel.setFont(plainFont);
+        errorMsgLabel.setText("jLabel1");
+
         javax.swing.GroupLayout addEmployeePanelLayout = new javax.swing.GroupLayout(addEmployeePanel);
         addEmployeePanel.setLayout(addEmployeePanelLayout);
         addEmployeePanelLayout.setHorizontalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(titleEmployeeLabel))
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addEmployeePanelLayout.createSequentialGroup()
+                    .addGap(150, 150, 150)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(100, 100, 100)
+                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(titleEmployeeLabel))
-                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(addEmployeePanelLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+                .addGap(30, 30, 30)
+                .addComponent(errorMsgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         addEmployeePanelLayout.setVerticalGroup(
             addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmployeePanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(titleEmployeeLabel)
+                .addGap(16, 16, 16)
+                .addComponent(errorMsgLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -833,6 +846,8 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         hoursPerWeekError.setVisible(false);
         weeksPerYearError.setVisible(false);
         yearlySalaryError.setVisible(false);
+        errorMsgLabel.setText("");
+        errorMsgLabel.setVisible(false);
     }
    
      private void setSex() {
@@ -897,52 +912,63 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
         boolean b = false;
         if(!pteSelector.isSelected() && !fteSelector.isSelected()) {
             typeError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please select employee type");
             b = true;
         }
         if(error[1] != -1 || empNumber == -1 || (empNumber < 0)) {
             empNumberError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input employee number (non-negative number)");
             b = true;
         }
-        if(firstName == null) {
-            System.out.println(firstName);
+        if(firstName.equals("")) {
             firstNameError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input first name");
             b = true;
         }
-        if(lastName == null) {
+        if(lastName.equals("")) {
             lastNameError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input last name");
             b = true;
         }
         if(sex == -1) {
             sexError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please select sex");
             b = true;
         }
-        if(workLocation == null) {
+        if(workLocation.equals("")) {
             workLocationError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input work location");
             b = true;
         }
         if(deductionRate == -1 || !(deductionRate < 1 && deductionRate >= 0)) {
             deductionRateError.setVisible(true);
+            if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input deduction rate (between 0 and 1)");
             b = true;
         }
         if(type) {
             if(weeksPerYear == -1 || (weeksPerYear > 52 || weeksPerYear < 0)) {
                 weeksPerYearError.setVisible(true);
+                if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input weeks per year (between 0 and 52)");
                 b = true;
             }
             if(hoursPerWeek == -1 || (hoursPerWeek > 168 || hoursPerWeek < 0)) {
                 hoursPerWeekError.setVisible(true);
+                if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input hours per week (between 0 and 168)");
                 b = true;
             }
             if(hourlyWage == -1 || hourlyWage < 0) {
                 hourlyWageError.setVisible(true);
+                if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input hourly wage (non-negative number)");
                 b = true;
             }
         } else {
             if(yearlySalary == -1 || yearlySalary < 0) {
                 yearlySalaryError.setVisible(true);
+                if(errorMsgLabel.getText().equals("")) errorMsgLabel.setText("Please input yearly salary (non-negative number)");
                 b = true;
             }
         }
+        if(b) errorMsgLabel.setVisible(true);
         return b;
     }
       
@@ -991,6 +1017,8 @@ public class AddEmployeeFrame extends javax.swing.JFrame{
     private javax.swing.JLabel empNumberLabel;
     private javax.swing.JPanel empNumberPanel;
     private javax.swing.JTextField empNumberTextField;
+    private javax.swing.JLabel errorMsgLabel;
+    private javax.swing.JLabel errorMsgLabel1;
     private javax.swing.JRadioButton femaleSelector;
     private javax.swing.JLabel firstNameError;
     private javax.swing.JLabel firstNameLabel;
